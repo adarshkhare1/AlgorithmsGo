@@ -1,6 +1,7 @@
 package datastructures
 
 import (
+	"Algorithms/testHelper"
 	"strconv"
 	"testing"
 )
@@ -11,7 +12,7 @@ func verifyDoubleLinkedList(t *testing.T, ll Doublelinkedlist, expected string){
 	for cur := ll.head; cur != nil; cur = cur.next {
 		result += " " + strconv.Itoa(cur.val)
 	}
-	verifyString(t, expected, result)
+	testHelper.VerifyStringsAreEqual(t, expected, result)
 }
 
 func TestDoublelinkedlist(t *testing.T) {

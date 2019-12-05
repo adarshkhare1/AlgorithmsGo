@@ -1,6 +1,7 @@
 package datastructures
 
 import (
+	"Algorithms/testHelper"
 	"testing"
 )
 
@@ -8,17 +9,17 @@ func TestStack_Push(t *testing.T) {
 
 	s := NewStack(10)
 	err := s.Push(2)
-	verifyInt(t, 1, s.Count())
-	verifyErrorNil(t, err)
+	testHelper.VerifyIntsAreEqual(t, 1, s.Count())
+	testHelper.VerifyErrorNil(t, err)
 }
 
 func TestStack_Peek(t *testing.T) {
 	s := NewStack(10)
 	s.Push(2)
 	n, err := s.Peek()
-	verifyInt(t, 2, n)
-	verifyInt(t, 1, s.Count())
-	verifyErrorNil(t, err)
+	testHelper.VerifyIntsAreEqual(t, 2, n)
+	testHelper.VerifyIntsAreEqual(t, 1, s.Count())
+	testHelper.VerifyErrorNil(t, err)
 
 }
 
@@ -26,16 +27,16 @@ func TestStack_Pop(t *testing.T) {
 	s := NewStack(10)
 	s.Push(2)
 	n, err := s.Pop()
-	verifyInt(t, 2, n)
-	verifyInt(t, 0, s.Count())
-	verifyErrorNil(t, err)
+	testHelper.VerifyIntsAreEqual(t, 2, n)
+	testHelper.VerifyIntsAreEqual(t, 0, s.Count())
+	testHelper.VerifyErrorNil(t, err)
 }
 
 func TestStack_Empty(t *testing.T) {
 	s := NewStack(10)
 	n,err := s.Pop()
-	verifyInt(t, -1, n)
-	verifyErrorNotNil(t, err)
+	testHelper.VerifyIntsAreEqual(t, -1, n)
+	testHelper.VerifyErrorNotNil(t, err)
 }
 
 func TestStack_Overflow(t *testing.T) {
@@ -44,11 +45,11 @@ func TestStack_Overflow(t *testing.T) {
 
 	for ;capacity > 0; capacity-- {
 		err := s.Push(capacity)
-		verifyErrorNil(t, err)
+		testHelper.VerifyErrorNil(t, err)
 	}
 	err := s.Push(10)
-	verifyErrorNotNil(t, err)
+	testHelper.VerifyErrorNotNil(t, err)
 	n, err := s.Pop()
-	verifyInt(t, 1, n)
-	verifyInt(t, 2, s.Count())
+	testHelper.VerifyIntsAreEqual(t, 1, n)
+	testHelper.VerifyIntsAreEqual(t, 2, s.Count())
 }

@@ -1,12 +1,13 @@
 package datastructures
 
 import (
+	"Algorithms/testHelper"
 	"testing"
 )
 
 func verifyBinaryTree(t *testing.T, tree BinaryTree, expected string){
 	/* read the list until head is not nil */
-	verifyString(t, expected, Inorder(tree.root, ""))
+	testHelper.VerifyStringsAreEqual(t, expected, Inorder(tree.root, ""))
 }
 
 func TestNewTreeNode(t *testing.T) {
@@ -20,6 +21,6 @@ func TestNewTreeNode(t *testing.T) {
 	tree.root.Right.Right = NewTreeNode(6)
 	tree.root.Right.Right.Right = NewTreeNode(10)
 	verifyBinaryTree(t, tree, " 3 1 4 0 5 2 6 10")
-	verifyInt(t, 4,  tree.Depth())
+	testHelper.VerifyIntsAreEqual(t, 4,  tree.Depth())
 }
 

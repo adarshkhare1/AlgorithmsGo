@@ -1,6 +1,7 @@
 package datastructures
 
 import (
+	"Algorithms/testHelper"
 	"strconv"
 	"testing"
 )
@@ -12,7 +13,7 @@ func verifyLinkedList(t *testing.T, head *Node, expected string){
 		result += " " + strconv.Itoa(head.Value)
 		head = head.Next /*head points to next node */
 	}
-	verifyString(t, expected, result)
+	testHelper.VerifyStringsAreEqual(t, expected, result)
 }
 
 
