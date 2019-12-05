@@ -1,86 +1,104 @@
 package datastructures
 
+import "errors"
+
 /* value is the value of node; next is the pointer to next node */
-type Node struct {
-	Value int
-	Next  *Node
+type linkedListNode struct {
+	_value int
+	Next   *linkedListNode
 }
 
-/* first node, called head. It points from first node to last node */
-var head *Node = nil
+type Linkedlist struct {
+	Head *linkedListNode
+}
 
-func (n *Node) PushFront(val int) *Node {
-	/* if there's no nodes, head points to l (first node) */
-	if head == nil {
-		n.Value = val
-		n.Next = nil
-		head = n
-		return n
+func NewLinkedlist(head *linkedListNode) *Linkedlist {
+	return &Linkedlist{Head: head}
+}
+
+func (l *Linkedlist) Append(val int)  {
+	newNode := linkedListNode{_value: val, Next:   nil}
+	if l.Head == nil {
+		l.Head = &newNode
 	} else {
-		/* create a new node equals to head */
-		nnode := new(Node)
-		nnode = head
-		/* create a second node with new value and `next -> nnode`
-		*  is this way, nnode2 is before nnode
-		 */
-		nnode2 := &Node{
-			Value: val,
-			Next:  nnode,
+		current := l.Head
+		for current.Next != nil {
+			current = current.Next
 		}
-		/* now head is equals nnode2 */
-		head = nnode2
-		return head
+		current.Next = &newNode
 	}
 }
 
-func (n *Node) PushBack(val int) *Node {
-	/* if there's no nodes, head points to l (first node) */
-	if head == nil {
-		n.Value = val
-		n.Next = nil
-		head = n
-		return n
+func (l *Linkedlist) InsertAtFront(val int)  error{
+	return l.InsertAt(0, val)
+}
+
+func (l *Linkedlist) InsertAt(index, val int)  error {
+	newNode := linkedListNode{_value: val, Next: nil}
+	if index == 0 {
+		newNode.Next = l.Head
+		l.Head = &newNode
 	} else {
-		/* read all list to last node */
-		for n.Next != nil {
-			n = n.Next
+		previous := l.Head
+		next := previous.Next
+		for i := 0; i < index-1; i++ {
+			previous = next
+			if previous == nil {
+				return errors.New("list is too small.")
+			}
+			next = next.Next
 		}
-		/* allocate a new portion of memory */
-		n.Next = new(Node)
-		n.Next.Value = val
-		n.Next.Next = nil
-		return n
+		previous.Next = &newNode
+		newNode.Next = next
+	}
+	return nil
+}
+
+func (l *Linkedlist) DeleteAt(index int)  error {
+	if index == 0 && l.Head != nil{
+		temp := l.Head.Next
+		l.Head = l.Head.Next
+		temp.Next = nil
+	} else {
+		previous := l.Head
+		next := previous.Next
+		for i := 0; i < index-1; i++ {
+			previous = next
+			if previous == nil {
+				return errors.New("list is too small.")
+			}
+			next = next.Next
+		}
+		previous.Next = next.Next
+		next.Next = nil
+	}
+	return nil
+
+}
+
+func (l *Linkedlist) PopFrontValue() (int, error) {
+	if l.Head == nil {
+		return -1, errors.New("LinkedList is empty.")
+	} else {
+		temp := l.Head
+		/* now head is equals cpnode (second node) */
+		l.Head = l.Head.Next
+		return temp._value, nil
 	}
 }
 
-func (n *Node) PopFront() *Node {
-	if head == nil {
-		return head
+func (l *Linkedlist) PopBackValue() (int, error) {
+	if l.Head == nil {
+		return -1, errors.New("LinkedList is empty.")
+	} else {
+		current := l.Head
+		/* read list to the penultimate node */
+		for current.Next.Next != nil {
+			current = current.Next
+		}
+		/* the penultimate node points to null. In this way the last node is deleted */
+		current.Next = nil
+		return current._value, nil
 	}
-	/* create a new node equals to first node pointed by head */
-	cpnode := new(Node)
-	cpnode = head.Next
-
-	/* now head is equals cpnode (second node) */
-	head = cpnode
-
-	return head
-}
-
-func (n *Node) PopBack() *Node {
-	if head == nil {
-		return head
-	}
-	/* create a new node equals to head */
-	cpnode := new(Node)
-	cpnode = head
-
-	/* read list to the penultimate node */
-	for cpnode.Next.Next != nil {
-		cpnode = cpnode.Next
-	}
-	/* the penultimate node points to null. In this way the last node is deleted */
-	cpnode.Next = nil
-	return head
 }
 
