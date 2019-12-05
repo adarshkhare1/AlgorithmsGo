@@ -57,8 +57,8 @@ func (l *Linkedlist) InsertAt(index, val int)  error {
 func (l *Linkedlist) DeleteAt(index int)  error {
 	if index == 0 && l.Head != nil{
 		temp := l.Head.Next
-		l.Head = l.Head.Next
-		temp.Next = nil
+		l.Head.Next = nil
+		l.Head = temp
 	} else {
 		previous := l.Head
 		next := previous.Next

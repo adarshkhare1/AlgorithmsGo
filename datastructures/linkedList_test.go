@@ -18,7 +18,7 @@ func verifyLinkedList(t *testing.T, list *Linkedlist, expected string){
 }
 
 
-func TestNode(t *testing.T) {
+func TestLinkedListOperations(t *testing.T) {
 	lista := NewLinkedlist(nil)
 	lista.Append(5)
 	lista.Append(14)
@@ -37,7 +37,25 @@ func TestNode(t *testing.T) {
 	lista.PopBackValue()
 	verifyLinkedList(t, lista, " 5 56 14")
 
+}
+
+func TestLinkedlist_InsertDelete(t *testing.T) {
+	lista := NewLinkedlist(nil)
+	lista.Append(5)
+	lista.Append(14)
+	lista.Append(12)
+	verifyLinkedList(t, lista, " 5 14 12")
+
+	lista.InsertAt(1,56)
+	verifyLinkedList(t, lista, " 5 56 14 12")
+
+	lista.DeleteAt(0)
+	verifyLinkedList(t, lista, " 56 14 12")
+
 	lista.DeleteAt(1)
-	verifyLinkedList(t, lista, " 5 14")
+	verifyLinkedList(t, lista, " 56 12")
+
+	lista.DeleteAt(1)
+	verifyLinkedList(t, lista, " 56")
 
 }
