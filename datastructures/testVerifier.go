@@ -13,3 +13,18 @@ func verifyInt(t *testing.T, expected int, actual int) {
 			t.Errorf("fail actual: %d, expected: %d", actual, expected)
 		}
 }
+
+func verifyErrorNotNil(t *testing.T, err error) {
+	if err == nil {
+		t.Errorf("fail expecting error, error is nil")
+	}
+}
+
+func verifyErrorNil(t *testing.T, err error) {
+	if err != nil {
+		t.Log(err)
+		t.Errorf("fail expecting nil error, error is not nil")
+	}
+}
+
+
