@@ -1,86 +1,118 @@
 // demonstration of doubly linked list in golang
 package datastructures
 
+import "errors"
+
 type doubleLinkedListNode struct {
-	val  int
-	next *doubleLinkedListNode
-	prev *doubleLinkedListNode
+	_value   int
+	Next     *doubleLinkedListNode
+	Previous *doubleLinkedListNode
 }
 
 type Doublelinkedlist struct {
-	head *doubleLinkedListNode
+	Head *doubleLinkedListNode
 }
 
 // to avoid mistakes when using pointer vs struct for new node creation
 func newDoubleLinkedListNode(val int) *doubleLinkedListNode {
 	n := &doubleLinkedListNode{}
-	n.val = val
-	n.next = nil
-	n.prev = nil
+	n._value = val
+	n.Next = nil
+	n.Previous = nil
 	return n
 }
 
-func (ll *Doublelinkedlist) AddAtBegin(val int) {
+func (ll *Doublelinkedlist) Append(val int) {
 	n := newDoubleLinkedListNode(val)
-	n.next = ll.head
-	ll.head = n
-}
-
-func (ll *Doublelinkedlist) AddAtEnd(val int) {
-	n := newDoubleLinkedListNode(val)
-
-	if ll.head == nil {
-		ll.head = n
+	if ll.Head == nil {
+		ll.Head = n
 		return
+	} else {
+		cur := ll.Head
+		for ; cur.Next != nil; cur = cur.Next {
+		}
+		cur.Next = n
+		n.Previous = cur
 	}
-
-	cur := ll.head
-	for ; cur.next != nil; cur = cur.next {
-	}
-	cur.next = n
-	n.prev = cur
 }
 
-func (ll *Doublelinkedlist) DeleteAtBegin() int {
-	if ll.head == nil {
-		return -1
-	}
-
-	cur := ll.head
-	ll.head = cur.next
-
-	if ll.head != nil {
-		ll.head.prev = nil
-	}
-
-	return cur.val
+func (ll *Doublelinkedlist) InsertAtFront(val int) error {
+	return ll.InsertAt(0, val)
 }
 
-func (ll *Doublelinkedlist) DeleteAtEnd() int {
+func (ll *Doublelinkedlist) InsertAt(index, val int)  error {
+	newNode := newDoubleLinkedListNode(val)
+	if index == 0{
+		newNode.Next = ll.Head
+		ll.Head = newNode
+		return nil
+	} else {
+		next := ll.Head.Next
+		for i := 0; i < index-1; i++ {
+			if next == nil {
+				return errors.New("list is too small.")
+			}
+			next = next.Next
+		}
+		next.Previous.Next = newNode
+		newNode.Previous = next.Previous
+		next.Previous = newNode
+		newNode.Next = next
+	}
+	return nil
+}
+
+func (ll *Doublelinkedlist) DeleteAt(index int)  error {
+	if index == 0 && ll.Head != nil{
+		temp := ll.Head
+		ll.Head = ll.Head.Next
+		if ll.Head != nil {
+			ll.Head.Previous = nil
+		}
+		temp.Next = nil
+	} else {
+		next := ll.Head
+		for i := 0; i < index-1; i++ {
+			if next == nil {
+				return errors.New("list is too small.")
+			}
+			next = next.Next
+		}
+		if next != nil {
+			if next.Previous != nil {
+				next.Previous.Next = next.Next
+			}
+			if next.Next != nil {
+				next.Next.Previous = next.Previous
+				next.Next = next.Next.Next
+			}
+			next.Previous = nil
+		} else {
+			return errors.New("list is too small.")
+		}
+	}
+	return nil
+
+}
+
+func (ll *Doublelinkedlist) DeleteAtEnd() error {
 	// no item
-	if ll.head == nil {
-		return -1
+	if ll.Head == nil {
+		return errors.New("list is too small.")
+	} else {
+		cur := ll.Head
+		for ; cur.Next.Next != nil; cur = cur.Next {
+		}
+		cur.Next.Previous = nil
+		cur.Next = nil
 	}
-
-	// only one item
-	if ll.head.next == nil {
-		return ll.DeleteAtBegin()
-	}
-
-	// more than one, go to second last
-	cur := ll.head
-	for ; cur.next.next != nil; cur = cur.next {
-	}
-
-	retval := cur.next.val
-	cur.next = nil
-	return retval
+	return nil
 }
 
 func (ll *Doublelinkedlist) Count() int {
 	var ctr int = 0
 
-	for cur := ll.head; cur != nil; cur = cur.next {
+	for cur := ll.Head; cur != nil; cur = cur.Next {
 		ctr += 1
 	}
 
@@ -89,15 +121,15 @@ func (ll *Doublelinkedlist) Count() int {
 
 func (ll *Doublelinkedlist) Reverse() {
 	var prev, next *doubleLinkedListNode
-	cur := ll.head
+	cur := ll.Head
 
 	for cur != nil {
-		next = cur.next
-		cur.next = prev
-		cur.prev = next
+		next = cur.Next
+		cur.Next = prev
+		cur.Previous = next
 		prev = cur
 		cur = next
 	}
 
-	ll.head = prev
+	ll.Head = prev
 }
