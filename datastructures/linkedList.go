@@ -69,8 +69,12 @@ func (l *Linkedlist) DeleteAt(index int)  error {
 			}
 			next = next.Next
 		}
-		previous.Next = next.Next
-		next.Next = nil
+		if next != nil {
+			previous.Next = next.Next
+			next.Next = nil
+		} else {
+			return errors.New("list is too small.")
+		}
 	}
 	return nil
 
@@ -81,7 +85,6 @@ func (l *Linkedlist) PopFrontValue() (int, error) {
 		return -1, errors.New("LinkedList is empty.")
 	} else {
 		temp := l.Head
-		/* now head is equals cpnode (second node) */
 		l.Head = l.Head.Next
 		return temp._value, nil
 	}
@@ -92,11 +95,9 @@ func (l *Linkedlist) PopBackValue() (int, error) {
 		return -1, errors.New("LinkedList is empty.")
 	} else {
 		current := l.Head
-		/* read list to the penultimate node */
 		for current.Next.Next != nil {
 			current = current.Next
 		}
-		/* the penultimate node points to null. In this way the last node is deleted */
 		current.Next = nil
 		return current._value, nil
 	}

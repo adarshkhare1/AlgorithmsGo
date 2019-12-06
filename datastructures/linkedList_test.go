@@ -58,4 +58,14 @@ func TestLinkedlist_InsertDelete(t *testing.T) {
 	lista.DeleteAt(1)
 	verifyLinkedList(t, lista, " 56")
 
+	err := lista.DeleteAt(1)
+	testHelper.VerifyErrorNotNil(t, err)
+
+	err = lista.InsertAt(1, 5)
+	verifyLinkedList(t, lista, " 56 5")
+	testHelper.VerifyErrorNil(t, err)
+
+	err = lista.InsertAt(3, 5)
+	testHelper.VerifyErrorNotNil(t, err)
+
 }
