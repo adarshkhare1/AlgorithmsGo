@@ -12,5 +12,5 @@ Syntax highlighted code block
   - Stack
 ## Sorting
   - Merge Sort
-### Header 3
+### Searching
 
