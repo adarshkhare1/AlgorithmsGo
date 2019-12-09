@@ -16,6 +16,10 @@ type BinaryTree struct {
 	root *TreeNode
 }
 
+func NewBinaryTree(root *TreeNode) *BinaryTree {
+	return &BinaryTree{root: root}
+}
+
 // helper function for t.depth
 func _calculate_depth(n *TreeNode, depth int) int {
 	if n == nil {

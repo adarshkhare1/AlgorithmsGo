@@ -5,14 +5,13 @@ import (
 	"testing"
 )
 
-func verifyBinaryTree(t *testing.T, tree BinaryTree, expected string){
+func verifyBinaryTree(t *testing.T, tree *BinaryTree, expected string){
 	/* read the list until head is not nil */
 	testHelper.VerifyStringsAreEqual(t, expected, Inorder(tree.root, ""))
 }
 
 func TestNewTreeNode(t *testing.T) {
-	tree := BinaryTree{nil}
-	tree.root = NewTreeNode(0)
+	tree := NewBinaryTree(NewTreeNode(0))
 	tree.root.Left = NewTreeNode(1)
 	tree.root.Right = NewTreeNode(2)
 	tree.root.Left.Left = NewTreeNode(3)

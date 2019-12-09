@@ -1,23 +1,24 @@
 package sorting
 
-func merge(a []int, b []int) []int {
+//TODO: Implement inplace sorting instead of creating new array
+func merge(left []int, right []int) []int {
 
-	result := make([]int, len(a) + len(b))
+	result := make([]int, len(left) + len(right))
 	i := 0
 	j :=0
 
-	for i < len(a) && j < len(b) {
-		if a[i] <= b[j] {
-			result[i+j] = a[i]
+	for i < len(left) && j < len(right) {
+		if left[i] <= right[j] {
+			result[i+j] = left[i]
 			i++
 		} else {
-			result[i+j] = b[j]
+			result[i+j] = right[j]
 			j++
 		}
 	}
 
-	for i < len(a) { result[i+j] = a[i]; i++ }
-	for j < len(b) { result[i+j] = b[j]; j++ }
+	for i < len(left) { result[i+j] = left[i]; i++ }
+	for j < len(right) { result[i+j] = right[j]; j++ }
 	return result
 
 }
@@ -28,9 +29,9 @@ func Mergesort(items []int) []int {
 	}
 
 	middle := len(items) / 2
-	var a = Mergesort(items[:middle])
-	var b = Mergesort(items[middle:])
-	return merge(a, b)
+	left := Mergesort(items[:middle])
+	right := Mergesort(items[middle:])
+	return merge(left, right)
 }
 
 
