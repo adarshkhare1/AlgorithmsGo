@@ -1,8 +1,5 @@
 ## Welcome to AlgorithmsGo
-This contains sample collection of data structures and algorithms in Go language. 
-
-```markdown
-Syntax highlighted code block
+This contains sample collection of data structures and algorithms in Go language. These are implemented as tutorial lessons.
 
 # Data Structures
   - Singly Linked List
