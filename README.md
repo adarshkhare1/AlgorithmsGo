@@ -12,5 +12,6 @@ Syntax highlighted code block
   - Stack
 ## Sorting
   - Merge Sort
+  - Quick Sort
 ### Searching
 
