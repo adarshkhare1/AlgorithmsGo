@@ -14,6 +14,12 @@ func VerifyIntsAreEqual(t *testing.T, expected int, actual int) {
 		}
 }
 
+func VerifyUintsAreEqual(t *testing.T, expected uint, actual uint) {
+	if actual != expected {
+		t.Errorf("fail actual: %d, expected: %d", actual, expected)
+	}
+}
+
 func VerifyErrorNotNil(t *testing.T, err error) {
 	if err == nil {
 		t.Errorf("fail expecting error, error is nil")

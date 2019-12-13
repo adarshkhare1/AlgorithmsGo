@@ -20,6 +20,6 @@ func TestNewTreeNode(t *testing.T) {
 	tree.root.Right.Right = NewTreeNode(6)
 	tree.root.Right.Right.Right = NewTreeNode(10)
 	verifyBinaryTree(t, tree, " 3 1 4 0 5 2 6 10")
-	testHelper.VerifyIntsAreEqual(t, 4,  tree.Depth())
+	testHelper.VerifyUintsAreEqual(t, 4,  tree.Depth())
 }
 

@@ -21,15 +21,15 @@ func NewBinaryTree(root *TreeNode) *BinaryTree {
 }
 
 // helper function for t.depth
-func _calculate_depth(n *TreeNode, depth int) int {
+func _calculateDepth(n *TreeNode, depth uint) uint {
 	if n == nil {
 		return depth
 	}
-	return _max(_calculate_depth(n.Left, depth+1), _calculate_depth(n.Right, depth+1))
+	return _max(_calculateDepth(n.Left, depth+1), _calculateDepth(n.Right, depth+1))
 }
 
 
-func _max(a, b int) int {
+func _max(a, b uint) uint {
 	if a > b {
 		return a
 	}
@@ -56,7 +56,7 @@ func Inorder(n *TreeNode, result string) string {
 }
 
 
-func (t *BinaryTree) Depth() int {
-	return _calculate_depth(t.root, 0)
+func (t *BinaryTree) Depth() uint {
+	return _calculateDepth(t.root, 0)
 }
 

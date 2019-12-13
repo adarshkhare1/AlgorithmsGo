@@ -40,7 +40,7 @@ func (ll *Doublelinkedlist) InsertAtFront(val int) error {
 	return ll.InsertAt(0, val)
 }
 
-func (ll *Doublelinkedlist) InsertAt(index, val int)  error {
+func (ll *Doublelinkedlist) InsertAt(index uint, val int)  error {
 	newNode := newDoubleLinkedListNode(val)
 	if index == 0{
 		newNode.Next = ll.Head
@@ -48,7 +48,7 @@ func (ll *Doublelinkedlist) InsertAt(index, val int)  error {
 		return nil
 	} else {
 		next := ll.Head.Next
-		for i := 0; i < index-1; i++ {
+		for i := uint(0); i < index-1; i++ {
 			if next == nil {
 				return errors.New("list is too small.")
 			}
@@ -62,7 +62,7 @@ func (ll *Doublelinkedlist) InsertAt(index, val int)  error {
 	return nil
 }
 
-func (ll *Doublelinkedlist) DeleteAt(index int)  error {
+func (ll *Doublelinkedlist) DeleteAt(index uint)  error {
 	if index == 0 && ll.Head != nil{
 		temp := ll.Head
 		ll.Head = ll.Head.Next
@@ -72,7 +72,7 @@ func (ll *Doublelinkedlist) DeleteAt(index int)  error {
 		temp.Next = nil
 	} else {
 		next := ll.Head
-		for i := 0; i < index-1; i++ {
+		for i := uint(0); i < index-1; i++ {
 			if next == nil {
 				return errors.New("list is too small.")
 			}
