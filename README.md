@@ -12,3 +12,8 @@ This contains sample collection of data structures and algorithms in Go language
   - Quick Sort
 ### Searching
 
+#### SafeCollection
+Thread safe collections
+  - SafeList
+  - SafeMap
+
