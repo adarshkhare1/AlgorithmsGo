@@ -16,7 +16,7 @@ This contains sample collection of data structures and algorithms in Go language
 Thread safe collections
   - SafeList
   - SafeMap
-##Concurrency
+## Concurrency
 Demonstrating applications and patterns of concurrency
   - WorkerPool 
 
