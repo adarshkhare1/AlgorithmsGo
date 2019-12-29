@@ -1,7 +1,7 @@
 ## Welcome to AlgorithmsGo
 This contains sample collection of data structures and algorithms in Go language. These are implemented as tutorial lessons.
 
-# Data Structures
+## Data Structures
   - Singly Linked List
   - Doubly Linked List
   - Binary Tree
@@ -10,5 +10,10 @@ This contains sample collection of data structures and algorithms in Go language
 ## Sorting
   - Merge Sort
   - Quick Sort
-### Searching
+## Searching
+
+## SafeCollection
+Thread safe collections
+  - SafeList
+  - SafeMap
 
