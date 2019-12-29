@@ -13,7 +13,8 @@ type Doublelinkedlist struct {
 	Head *doubleLinkedListNode
 }
 
-// to avoid mistakes when using pointer vs struct for new node creation
+// to avoid mistakes when using pointer vs struct for new node creation.
+// Constructor
 func newDoubleLinkedListNode(val int) *doubleLinkedListNode {
 	n := &doubleLinkedListNode{}
 	n._value = val
