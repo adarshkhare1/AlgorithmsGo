@@ -5,9 +5,7 @@ import "sync"
 // Task encapsulates a work item that should go in a work pool.
 type WorkItem struct {
 	// Err holds an error that occurred when running a workItem. Its
-	// result is only meaningful after Run has been called.
 	Err error
-
 	f func() error
 }
 
