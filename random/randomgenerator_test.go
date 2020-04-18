@@ -9,7 +9,7 @@ import (
 func TestGenericRandomGenerator(t *testing.T){
 	/* read the list until head is not nil */
 	g := NewRandomGenerator()
-	nums := g.GetNumbers(10)
+	nums := g.GetNumbers(50)
 	printNumberList(nums)
 	fmt.Println()
 }
@@ -17,7 +17,7 @@ func TestGenericRandomGenerator(t *testing.T){
 func TestRandomGeneratorWithSeed(t *testing.T){
 	//Using System tick count as seed
 	g := NewGeneratorWithSeed(time.Now().UTC().Nanosecond())
-	nums := g.GetNumbersWithinMax(1000, 10)
+	nums := g.GetNumbersWithinMax(10000, 20)
 	printNumberList(nums)
 	fmt.Println()
 }
