@@ -38,9 +38,9 @@ func TestWorkerPool(t *testing.T){
 }
 
 func testAdd() error{
-	x := 1 + 2
+	//x := 1 + 2
 	d, _ := time.ParseDuration("2s")
 	time.Sleep(d)
-	println("x=",x)
+	//println("x=",x)
 	return nil
 }

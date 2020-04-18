@@ -3,6 +3,6 @@ package Algorithms
 import "Algorithms/random"
 
 func main() {
-	g := random.NewRandomGenerator(5,2,4,22)
-	g.GenerateNumbers(10)
+	g := random.NewGenericRandomGenerator(5,2,4)
+	g.GetNumbers(10)
 }
