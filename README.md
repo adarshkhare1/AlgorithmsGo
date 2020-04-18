@@ -20,5 +20,6 @@ Thread safe collections
 Demonstrating applications and patterns of concurrency
   - WorkerPool 
 ## Random Number Generator
+  - Linear Congruential Method
 
 
