@@ -2,7 +2,7 @@
 This contains sample collection of data structures and algorithms in Go language. These are implemented as tutorial lessons.
 It is work in progress.
 
-## 1.Information Structures
+## 1. Information Structures
 ---
 ### [Data Structures](/datastructures)
   - [Singly Linked List](/datastructures/linkedList.go)
@@ -16,11 +16,11 @@ It is work in progress.
   - [SafeMap](/safecollections/safeMap.go)
 #### [Concurrent execution](/concurrency)
   - [WorkerPool](/concurrency/workerPool.go)
-## 2.Seminumerical Algorithms
+## 2. Seminumerical Algorithms
 ---
 ### Random Number Generator
 - [Linear Congruential Method](/random/randomgenerator.go)
-## 3.Sorting and Searching
+## 3. Sorting and Searching
 ---
 ### [Sorting](/sorting)
 Sorting algorithms demonstrated using integer lists, because of no generic support is in golang.
