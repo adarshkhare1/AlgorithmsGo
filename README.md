@@ -5,7 +5,7 @@ It is work in progress.
 ## 1.Information Structures
 ---
 ### Data Structures
-  - Singly Linked List
+  - [Singly Linked List] (..blob/master/datastructures/linkedList.go)
   - Doubly Linked List
   - Binary Tree
   - Queue
