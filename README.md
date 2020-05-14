@@ -21,6 +21,7 @@ It is work in progress.
 ---
 ### Random Numbers
 - [Linear Congruential Method](/random/randomgenerator.go)
+- [Additive Congruential Method](/random/randomgenerator.go)
 # Sorting and Searching
 ---
 ### [Sorting](/sorting)
