@@ -19,16 +19,16 @@ It is work in progress.
   - [WorkerPool](/concurrency/workerPool.go)
 # Seminumerical Algorithms
 ---
-### Random Numbers
+## Random Numbers
 - [Linear Congruential Method](/random/randomgenerator.go)
 - [Additive Congruential Method](/random/randomgenerator.go)
 # Sorting and Searching
 ---
-### [Sorting](/sorting)
+## [Sorting](/sorting)
 Sorting algorithms demonstrated using integer lists, because of no generic support is in golang.
   - [Merge Sort](/sorting/mergeSort.go)
   - [Quick Sort](/sorting/quickSort.go)
 
-### Searching
+## Searching
 
 
