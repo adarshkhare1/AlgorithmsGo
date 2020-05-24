@@ -4,5 +4,5 @@ import "Algorithms/random"
 
 func main() {
 	g := random.NewRandomGenerator()
-	g.GetNumbers(10)
+	g.NextNumbersWithinMax(10, 10)
 }

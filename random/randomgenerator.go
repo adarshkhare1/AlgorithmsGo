@@ -13,6 +13,7 @@ type Generator struct {
 	multiplier int //multiplier
 	increment int //increment
 	xSeed int // starting value
+	lastNumber int //last generated number
 }
 
 //Most commonly used generator to initialize with time tick as seed
@@ -29,19 +30,28 @@ func NewGeneratorWithSeed(xSeed int) *Generator {
 //Most commonly used generator to initialize with user defined seed
 func NewGeneratorWithSeedAndAlgorithm(xSeed int, algo RandomGeneratorAlgorithm) *Generator {
 	//Using the default value of multiplier and increment as defined in ANSI C
-	return &Generator{multiplier: 1103515245, increment: 12345, xSeed: xSeed, algorithmType: algo}
+	return &Generator{multiplier: 1103515245, increment: 12345, xSeed: xSeed, algorithmType: algo, lastNumber: xSeed}
 }
 
 //Generate the random numbers array for given count, range will be selected based on
 //desired population.
-func (g *Generator) GetNumbers(numbersCount int)  ([]int, error) {
+func (g *Generator) NextNumber()  (int, error) {
 	max := MaxInt32
-	return g.GetNumbersWithinMax(max, numbersCount)
+	return g.NextNumberWithMax(max)
+}
+
+//Implementation of Random number generator using linear congruential method
+func (g *Generator) NextNumberWithMax(maxValue int)  (int, error){
+	nums, err := g.NextNumbersWithinMax(maxValue, 1)
+	if err != nil {
+		return -1, err
+	}
+	return nums[0], nil
 }
 
 //Generate the random numbers array for given count with maxvalue limit
 //Number sequence will repeat if maxValue less than desired population size
-func (g *Generator) GetNumbersWithinMax(maxValue int, numbersCount int)  ([]int, error) {
+func (g *Generator) NextNumbersWithinMax(maxValue int, numbersCount int)  ([]int, error) {
 	if g.algorithmType == RandomGeneratorAlgorithm(Congruential) {
 		return g.getNumbersUsingCongruential(maxValue, numbersCount), nil
 	} else if  g.algorithmType == RandomGeneratorAlgorithm(Additive) {
@@ -66,11 +76,10 @@ func (g *Generator) getNumbersUsingCongruential(maxValue int, numbersCount int) 
 		}
 	}
 	numbers := make([]int, 0)
-	start := g.xSeed
 	for i := 0; i < numbersCount; i++ {
-		num := (g.multiplier*start + g.increment) % g.modulus
-		numbers = append(numbers, num%numbersCount)
-		start = num
+		num := (g.multiplier*g.lastNumber + g.increment) % g.modulus
+		numbers = append(numbers, num)
+		g.lastNumber = num
 	}
 	return numbers
 }

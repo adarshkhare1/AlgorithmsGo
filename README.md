@@ -22,6 +22,9 @@ It is work in progress.
 ### Random Numbers
 - [Linear Congruential Method](/random/randomgenerator.go)
 - [Additive Congruential Method](/random/randomgenerator.go)
+### Statistical Distribution Tests
+- [Chi-square distribution](/statistics/chiSquareDistribution.go)
+
 # Sorting and Searching
 ---
 ### [Sorting](/sorting)
