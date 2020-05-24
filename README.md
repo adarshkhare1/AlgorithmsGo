@@ -11,15 +11,16 @@ It is work in progress.
   - [Binary Tree](/datastructures/binaryTree.go)
   - [Queue](/datastructures/queue.go)
   - [Stack](r/datastructures/stack.go)
-### Concurrency - multi core processiong
-#### [Safe collections](/safecollections)
+## Concurrency - multi core processiong
+### [Safe collections](/safecollections)
   - [SafeList](/safecollections/safeList.go)
   - [SafeMap](/safecollections/safeMap.go)
-#### [Concurrent execution](/concurrency)
+### [Concurrent execution](/concurrency)
   - [WorkerPool](/concurrency/workerPool.go)
 # Seminumerical Algorithms
 ---
 ## Random Numbers
+### Generating Random Numbers
 - [Linear Congruential Method](/random/randomgenerator.go)
 - [Additive Congruential Method](/random/randomgenerator.go)
 ### Statistical Distribution Tests
