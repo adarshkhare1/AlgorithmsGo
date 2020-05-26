@@ -17,6 +17,12 @@ func NewExperimentResult() *ExperimentResult {
 	return &ExperimentResult{}
 }
 
+func (data *ExperimentData) AddResult(id string) {
+	r := data.Results[id]
+	r.Count++
+	data.Results[id] = r
+}
+
 //Initializes expected probability as equal for given degree of freedom, index will be the ID of the value.
 func (data *ExperimentData)InitEqualDistributionResultsMap(degreeOfFreedom int)  {
 	p := 1.00/float64(degreeOfFreedom)
@@ -28,7 +34,7 @@ func (data *ExperimentData)InitEqualDistributionResultsMap(degreeOfFreedom int) 
 	}
 }
 
-//Returns the calculated probability distribution of experitment data
+//Returns the calculated probability distribution of experiment data
 func (data *ExperimentData) FindProbabilityDistribution() map[string]float64 {
 	sum := data.calculateTotalIterations()
 	result := make(map[string]float64)

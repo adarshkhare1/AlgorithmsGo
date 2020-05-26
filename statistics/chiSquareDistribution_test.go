@@ -7,9 +7,9 @@ import (
 )
 
 func TestEvaluateChiSquareVariation(t *testing.T) {
-	degreeOfFreedom := 6
+	degreeOfFreedom := 10
 	x := 0.0
-	numIterations := 500 // Number of iterations in experiment
+	numIterations := 50 // Number of iterations in experiment
 	nExperiments := 10 //number of times experiment is repeated
 	for i := 0; i < nExperiments; i++ {
 		g := NewRandomGenerator()
@@ -17,13 +17,9 @@ func TestEvaluateChiSquareVariation(t *testing.T) {
 		d.InitEqualDistributionResultsMap(degreeOfFreedom)
 		for j := 0; j < numIterations; j++ {
 			num, _ := g.NextNumberWithMax(degreeOfFreedom-1)
-			index := num
-			r := d.Results[string(index)]
-			r.Count++
-			d.Results[string(index)] = r
+			d.AddResult(string(num))
 		}
-		variation := EvaluateChiSquareVariation(*d)
-		x += variation
+		x += EvaluateChiSquareVariation(*d)
 	}
 	fmt.Printf("Average ChiSquare Variation with % d degree of freedom is %f.\n",
 		degreeOfFreedom,
