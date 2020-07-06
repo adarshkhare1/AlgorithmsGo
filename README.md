@@ -24,7 +24,8 @@ It is work in progress.
 - [Linear Congruential Method](/random/randomgenerator.go)
 - [Additive Congruential Method](/random/randomgenerator.go)
 ### Statistical Distribution Tests
-- [Chi-square distribution](/statistics/chiSquareDistribution.go)
+- [Chi-square distribution](/statistics/discreteSampleSpace.go)
+- [The Kolmogorov-Smirov Distribution](/statistics/continuousSampleSpace.go)
 
 # Sorting and Searching
 ---
