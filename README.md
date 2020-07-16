@@ -4,6 +4,8 @@ It is work in progress.
 
 # Fundamental Algorithms
 ---
+## [Mathematical Preliminaries](/mathematics)
+  - [Euclid's Algorithm](/mathematics/euclidian.go)
 ## Information Structures
 ### [Data Structures](/datastructures)
   - [Singly Linked List](/datastructures/linkedList.go)
