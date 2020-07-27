@@ -1,6 +1,8 @@
 package mathematics
 
-//GCDIterative
+// Iterative implementation of Euclidian algorithm.
+// Algorithm formula is following
+// gcd(num1,num2) = gcd(min(num1,num2),max(num1,num2)−min(num1,num2))
 func FindGreatestCommonDivisor(num1, num2 int) int {
 	var temp int
 	for num1 > 0 {
