@@ -37,6 +37,7 @@ func VerifyArraysAreEqual(t *testing.T, expected, actual []int) {
 	if len(expected) != len(actual) {
 		t.Errorf("fail array size mismatch actual: %d, expected: %d", len(actual), len(expected))
 	}
+
 	for i, v := range actual {
 		if v != expected[i] {
 			t.Errorf("fail array value mismatch on %d, actual: %d, expected: %d", i, v, expected[i])

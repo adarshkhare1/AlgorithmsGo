@@ -6,36 +6,31 @@ import (
 )
 
 func TestMergesort(t *testing.T) {
-	a := []int {1, 4, 2, 5, 3}
-	expected := []int {1, 2, 3, 4, 5}
-	result := Mergesort(a)
-	testHelper.VerifyArraysAreEqual(t, expected, result)
+	in := NewSortBasic()
+	result := Mergesort(in.Input)
+	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
 }
 
 func TestMergesortEmpty(t *testing.T) {
-	a := []int {}
-	expected := []int {}
-	result := Mergesort(a)
-	testHelper.VerifyArraysAreEqual(t, expected, result)
+	in := NewSortEmpty()
+	result := Mergesort(in.Input)
+	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
 }
 
 func TestMergesortPreSorted(t *testing.T) {
-	a := []int {1, 2, 3, 4, 5}
-	expected := []int {1, 2, 3, 4, 5}
-	result := Mergesort(a)
-	testHelper.VerifyArraysAreEqual(t, expected, result)
+	in := NewSortPreSorted()
+	result := Mergesort(in.Input)
+	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
 }
 
 func TestMergesortReverseSorted(t *testing.T) {
-	a := []int {5, 4, 3, 2, 1}
-	expected := []int {1, 2, 3, 4, 5}
-	result := Mergesort(a)
-	testHelper.VerifyArraysAreEqual(t, expected, result)
+	in := NewSortReverseSorted()
+	result := Mergesort(in.Input)
+	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
 }
 
 func TestMergesortAllEqual(t *testing.T) {
-	a := []int {5, 5, 5, 5, 5}
-	expected := []int {5, 5, 5, 5, 5}
-	result := Mergesort(a)
-	testHelper.VerifyArraysAreEqual(t, expected, result)
+	in := NewSortAllEquals()
+	result := Mergesort(in.Input)
+	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
 }
