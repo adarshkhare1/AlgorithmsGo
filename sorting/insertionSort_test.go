@@ -1,36 +1,25 @@
 package sorting
 
 import (
-	"Algorithms/testHelper"
 	"testing"
 )
 
 func TestInsertionSort(t *testing.T) {
-	in := NewSortBasic()
-	result := InsertionSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(InsertionSort, NewSortBasic(), t)
 }
 
 func TestInsertionSortEmpty(t *testing.T) {
-	in := NewSortEmpty()
-	result := InsertionSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(InsertionSort, NewSortEmpty(), t)
 }
 
 func TestInsertionSortPreSorted(t *testing.T) {
-	in := NewSortPreSorted()
-	result := InsertionSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(InsertionSort, NewSortPreSorted(), t)
 }
 
 func TestInsertionSortReverseSorted(t *testing.T) {
-	in := NewSortReverseSorted()
-	result := InsertionSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(InsertionSort, NewSortReverseSorted(), t)
 }
 
 func TestInsertionSortAllEqual(t *testing.T) {
-	in := NewSortAllEquals()
-	result := InsertionSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(InsertionSort, NewSortAllEquals(), t)
 }

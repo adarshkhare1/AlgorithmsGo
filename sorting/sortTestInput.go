@@ -1,5 +1,10 @@
 package sorting
 
+import (
+	"Algorithms/testHelper"
+	"testing"
+)
+
 type SortTestInput struct {
 	Input []int
 	Expected []int
@@ -33,4 +38,9 @@ func NewSortAllEquals() *SortTestInput {
 	return &SortTestInput{
 		Input: []int{5, 5, 5, 5, 5},
 		Expected: []int{5, 5, 5, 5, 5}}
+}
+
+func TestSort(fp func(items []int) []int, in *SortTestInput, t *testing.T) {
+	result := fp(in.Input)
+	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
 }

@@ -1,36 +1,25 @@
 package sorting
 
 import (
-	"Algorithms/testHelper"
 	"testing"
 )
 
 func TestMergesort(t *testing.T) {
-	in := NewSortBasic()
-	result := Mergesort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(MergeSort, NewSortBasic(), t)
 }
 
 func TestMergesortEmpty(t *testing.T) {
-	in := NewSortEmpty()
-	result := Mergesort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(MergeSort, NewSortEmpty(), t)
 }
 
 func TestMergesortPreSorted(t *testing.T) {
-	in := NewSortPreSorted()
-	result := Mergesort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(MergeSort, NewSortPreSorted(), t)
 }
 
 func TestMergesortReverseSorted(t *testing.T) {
-	in := NewSortReverseSorted()
-	result := Mergesort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(MergeSort, NewSortReverseSorted(), t)
 }
 
 func TestMergesortAllEqual(t *testing.T) {
-	in := NewSortAllEquals()
-	result := Mergesort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(MergeSort, NewSortAllEquals(), t)
 }

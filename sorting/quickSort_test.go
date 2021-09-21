@@ -1,35 +1,24 @@
 package sorting
 
 import (
-	"Algorithms/testHelper"
 	"testing"
 )
 func TestQuicksort(t *testing.T) {
-	in := NewSortBasic()
-	result := QuickSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(QuickSort, NewSortBasic(), t)
 }
 
 func TestQuickSortEmpty(t *testing.T) {
-	in := NewSortEmpty()
-	result := QuickSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(QuickSort, NewSortEmpty(), t)
 }
 
 func TestQuickSortPreSorted(t *testing.T) {
-	in := NewSortPreSorted()
-	result := QuickSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(QuickSort, NewSortPreSorted(), t)
 }
 
 func TestQuickSortReverseSorted(t *testing.T) {
-	in := NewSortReverseSorted()
-	result := QuickSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(QuickSort, NewSortReverseSorted(), t)
 }
 
 func TestQuickSortAllEqual(t *testing.T) {
-	in := NewSortAllEquals()
-	result := QuickSort(in.Input)
-	testHelper.VerifyArraysAreEqual(t, in.Expected, result)
+	TestSort(QuickSort, NewSortAllEquals(), t)
 }

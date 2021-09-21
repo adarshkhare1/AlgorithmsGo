@@ -23,14 +23,14 @@ func merge(left []int, right []int) []int {
 
 }
 
-func Mergesort(items []int) []int {
+func MergeSort(items []int) []int {
 	if len(items) < 2 {
 		return items
 	}
 
 	middle := len(items) / 2
-	left := Mergesort(items[:middle])
-	right := Mergesort(items[middle:])
+	left := MergeSort(items[:middle])
+	right := MergeSort(items[middle:])
 	return merge(left, right)
 }
 
