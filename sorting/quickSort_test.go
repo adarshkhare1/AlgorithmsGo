@@ -7,6 +7,10 @@ func TestQuicksort(t *testing.T) {
 	TestSort(QuickSort, NewSortBasic(), t)
 }
 
+func TestQuickSortSequence(t *testing.T) {
+	TestSort(HeapSort, NewSortSequence(), t)
+}
+
 func TestQuickSortEmpty(t *testing.T) {
 	TestSort(QuickSort, NewSortEmpty(), t)
 }

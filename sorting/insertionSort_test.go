@@ -8,6 +8,11 @@ func TestInsertionSort(t *testing.T) {
 	TestSort(InsertionSort, NewSortBasic(), t)
 }
 
+func TestInsertionSortSequence(t *testing.T) {
+	TestSort(HeapSort, NewSortSequence(), t)
+}
+
+
 func TestInsertionSortEmpty(t *testing.T) {
 	TestSort(InsertionSort, NewSortEmpty(), t)
 }

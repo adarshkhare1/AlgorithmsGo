@@ -8,6 +8,10 @@ func TestMergesort(t *testing.T) {
 	TestSort(MergeSort, NewSortBasic(), t)
 }
 
+func TestMergeSortSequence(t *testing.T) {
+	TestSort(HeapSort, NewSortSequence(), t)
+}
+
 func TestMergesortEmpty(t *testing.T) {
 	TestSort(MergeSort, NewSortEmpty(), t)
 }

@@ -10,10 +10,16 @@ type SortTestInput struct {
 	Expected []int
 }
 
+func NewSortSequence() *SortTestInput {
+	return &SortTestInput{
+		Input: []int{1, 4, 2, 5, 3, 6},
+		Expected: []int{1, 2, 3, 4, 5, 6}}
+}
+
 func NewSortBasic() *SortTestInput {
 	return &SortTestInput{
-		Input: []int{1, 4, 2, 5, 3},
-		Expected: []int{1, 2, 3, 4, 5}}
+		Input: []int{5, 13, 2, 25, 7, 17, 20, 8, 4},
+		Expected: []int{2, 4, 5, 7, 8, 13, 17, 20, 25}}
 }
 
 func NewSortEmpty() *SortTestInput {
