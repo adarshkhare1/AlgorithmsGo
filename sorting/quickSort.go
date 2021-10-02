@@ -25,18 +25,11 @@ func partition(items []int, start int, end int)  int {
 	for j:= start; j < end - 1; j++{
 		if items[j] < pivot{
 			i++
-			swapElements(items, i, j)
+			swapArrayElements(items, i, j)
 		}
 	}
-	swapElements(items, i+1, end-1)
+	swapArrayElements(items, i+1, end-1)
 	return i+1
 }
 
-func swapElements(items []int, i int, j int) {
-	if i < len(items) && j < len(items) && i != j {
-		temp := items[i]
-		items[i] = items[j]
-		items[j] = temp
-	}
-}
 
