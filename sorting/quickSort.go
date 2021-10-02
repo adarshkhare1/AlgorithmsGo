@@ -1,39 +1,41 @@
 package sorting
 
-import "math/rand"
+func QuickSort(items []int) []int {
 
-
-
-//TODO: need to swap elements for optimization instead of creating three arrays
-func QuickSort(arr []int) []int {
-
-	if len(arr) <= 1 {
-		return arr
+	if len(items) <= 1 {
+		return items
 	}
+	quickSortElements(items, 0, len(items))
+	return items
+}
 
-	median := arr[rand.Intn(len(arr))]
+func quickSortElements(items []int, start int, end int) {
 
-	low_part := make([]int, 0, len(arr))
-	high_part := make([]int, 0, len(arr))
-	middle_part := make([]int, 0, len(arr))
+	if start < end {
+		pivotIndex := partition(items, start, end)
+		quickSortElements(items, start, pivotIndex)
+		quickSortElements(items, pivotIndex+1, end)
+	}
+}
 
-	for _, item := range arr {
-		switch {
-		case item < median:
-			low_part = append(low_part, item)
-		case item == median:
-			middle_part = append(middle_part, item)
-		case item > median:
-			high_part = append(high_part, item)
+func partition(items []int, start int, end int)  int {
+	pivot := items[end-1]
+	i := start-1
+	for j:= start; j < end - 1; j++{
+		if items[j] < pivot{
+			i++
+			swapElements(items, i, j)
 		}
 	}
+	swapElements(items, i+1, end-1)
+	return i+1
+}
 
-	low_part = QuickSort(low_part)
-	high_part = QuickSort(high_part)
-
-	low_part = append(low_part, middle_part...)
-	low_part = append(low_part, high_part...)
-
-	return low_part
+func swapElements(items []int, i int, j int) {
+	if i < len(items) && j < len(items) && i != j {
+		temp := items[i]
+		items[i] = items[j]
+		items[j] = temp
+	}
 }
 
