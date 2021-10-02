@@ -1,5 +1,6 @@
 package sorting
 
+//Quick sort impplementation using element swap.
 func QuickSort(items []int) []int {
 
 	if len(items) <= 1 {
