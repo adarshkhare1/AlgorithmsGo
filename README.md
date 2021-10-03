@@ -8,10 +8,11 @@ It is work in progress.
   - [Euclid's Algorithm](/mathematics/euclidian.go)
 ## Information Structures
 ### [Data Structures](/datastructures)
-  - [Singly Linked List](/datastructures/linkedList.go)
-  - [Doubly Linked List](/datastructures/doubleLinkedList.go)
   - [Binary Tree](/datastructures/binaryTree.go)
+  - [Doubly Linked List](/datastructures/doubleLinkedList.go)
+  - [Priority Queue](/datastructures/priorityQueue.go)
   - [Queue](/datastructures/queue.go)
+  - [Singly Linked List](/datastructures/linkedList.go)
   - [Stack](r/datastructures/stack.go)
 ## Concurrency - multi core processiong
 ### [Safe collections](/safecollections)
