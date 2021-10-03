@@ -2,14 +2,14 @@ package concurrency
 
 import "sync"
 
-// Task encapsulates a work item that should go in a work pool.
+// WorkItem Task encapsulates a work item that should go in a work pool.
 type WorkItem struct {
 	// Err holds an error that occurred when running a workItem. Its
 	Err error
 	f func() error
 }
 
-// NewTask initializes a new task based on a given work
+// NewWorkItem NewTask initializes a new task based on a given work
 func NewWorkItem(f func() error) *WorkItem {
 	return &WorkItem{f: f}
 }

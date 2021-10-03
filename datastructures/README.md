@@ -1,6 +1,7 @@
 ## Data Structures
-  - [Singly Linked List](/datastructures/linkedList.go)
+  - [Binary Tree](binaryTree.go)
   - [Doubly Linked List](/datastructures/doubleLinkedList.go)
-  - [Binary Tree](/datastructures/binaryTree.go)
-  - [Queue](/datastructures/queue.go)
-  - [Stack](r/datastructures/stack.go)
+  - [Priority Queue](priorityQueue.go)
+  - [Queue](queue.go)
+  - [Singly Linked List](linkedList.go)
+  - [Stack](stack.go)
