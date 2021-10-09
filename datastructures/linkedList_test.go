@@ -25,7 +25,7 @@ func TestLinkedListOperations(t *testing.T) {
 	lista.Append(12)
 	verifyLinkedList(t, lista, " 5 14 12")
 
-	lista.InsertAt(1,56)
+	lista.InsertAt(1, 56)
 	verifyLinkedList(t, lista, " 5 56 14 12")
 
 	lista.InsertAtFront(36)
@@ -37,6 +37,14 @@ func TestLinkedListOperations(t *testing.T) {
 	lista.PopBackValue()
 	verifyLinkedList(t, lista, " 5 56 14")
 
+}
+
+func TestEmptyListErrors(t *testing.T) {
+	lista := NewLinkedlist(nil)
+	_, err := lista.PopBackValue()
+	testHelper.VerifyErrorNotNil(t, err)
+	_, err = lista.PopFrontValue()
+	testHelper.VerifyErrorNotNil(t, err)
 }
 
 func TestLinkedlist_InsertDelete(t *testing.T) {

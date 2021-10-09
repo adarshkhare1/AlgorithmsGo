@@ -39,16 +39,12 @@ func (l *Linkedlist) InsertAt(index, val int)  error {
 		newNode.Next = l.Head
 		l.Head = &newNode
 	} else {
-		previous := l.Head
-		next := previous.Next
-		for i := 0; i < index-1; i++ {
-			previous = next
-			if previous == nil {
-				return errors.New("list is too small.")
-			}
-			next = next.Next
+		node, err := l.getNodeByIndex(index-1)
+		if err != nil {
+			return err
 		}
-		previous.Next = &newNode
+		next := node.Next
+		node.Next = &newNode
 		newNode.Next = next
 	}
 	return nil
@@ -60,17 +56,13 @@ func (l *Linkedlist) DeleteAt(index int)  error {
 		l.Head.Next = nil
 		l.Head = temp
 	} else {
-		previous := l.Head
-		next := previous.Next
-		for i := 0; i < index-1; i++ {
-			previous = next
-			if previous == nil {
-				return errors.New("list is too small.")
-			}
-			next = next.Next
+		node, err := l.getNodeByIndex(index-1)
+		if err != nil {
+			return err
 		}
+		next := node.Next
 		if next != nil {
-			previous.Next = next.Next
+			node.Next = next.Next
 			next.Next = nil
 		} else {
 			return errors.New("list is too small.")
@@ -103,3 +95,15 @@ func (l *Linkedlist) PopBackValue() (int, error) {
 	}
 }
 
+func (l *Linkedlist) getNodeByIndex(index int) (*linkedListNode, error) {
+	current := l.Head
+	next := current.Next
+	for i := 0; i < index; i++ {
+		current = next
+		if current == nil {
+			return nil, errors.New("list is too small.")
+		}
+		next = next.Next
+	}
+	return current, nil
+}
