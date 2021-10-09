@@ -4,3 +4,5 @@
   in returned subarray is maximum. Minimum SumArray size will be 2 elements to
   maximum full array length.  If single element array is given as input, sum 
   will be the element value.
+- [Find number in sorted array](/searching/sortedArraySearch.go)
+  Return the index of the matching element in a sorted array, -1 if element not found.

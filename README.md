@@ -41,4 +41,5 @@ Sorting algorithms demonstrated using integer lists, because of no generic suppo
 
 ## [Searching](/searching)
 - [Find Maximum Subarray](/searching/findMaxSubarray.go)
+- [Find number in sorted array](/searching/sortedArraySearch.go)
 

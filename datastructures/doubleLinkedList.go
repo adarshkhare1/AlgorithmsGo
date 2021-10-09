@@ -1,4 +1,4 @@
-// demonstration of doubly linked list in golang
+// Package datastructures demonstration of doubly linked list in golang
 package datastructures
 
 import "errors"
