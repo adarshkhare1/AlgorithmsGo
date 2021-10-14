@@ -5,7 +5,7 @@ It is work in progress.
 # Fundamental Algorithms
 ---
 ## [Mathematical Preliminaries](/mathematics)
-  - [Euclid's Algorithm](/mathematics/euclidian.go)
+  - [Euclid's Algorithm](/mathematics/euclidean.go)
 ## Information Structures
 ### [Data Structures](/datastructures)
   - [Binary Tree](/datastructures/binaryTree.go)
@@ -14,7 +14,7 @@ It is work in progress.
   - [Queue](/datastructures/queue.go)
   - [Singly Linked List](/datastructures/linkedList.go)
   - [Stack](r/datastructures/stack.go)
-## Concurrency - multi core processiong
+## Concurrency - multi core processing
 ### [Safe collections](/safecollections)
   - [SafeList](/safecollections/safeList.go)
   - [SafeMap](/safecollections/safeMap.go)
@@ -28,7 +28,7 @@ It is work in progress.
 - [Additive Congruential Method](/random/randomgenerator.go)
 ### Statistical Distribution Tests
 - [Chi-square distribution](/statistics/discreteSampleSpace.go)
-- [The Kolmogorov-Smirov Distribution](/statistics/continuousSampleSpace.go)
+- [The Kolmogorov-Smirnov's Distribution](/statistics/continuousSampleSpace.go)
 
 # Sorting and Searching
 ---
