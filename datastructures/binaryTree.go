@@ -53,6 +53,43 @@ func (t *BinaryTree)Insert(k int) *TreeNode{
 	return newNode
 }
 
+func (t *BinaryTree)Delete (z *TreeNode){
+	if z.Left == nil{
+		t.transplant(z, z.Right)
+	} else if z.Right == nil{
+		t.transplant(z, z.Left)
+	} else{
+		y := treeMinimum(z.Right)
+		if y.Parent != z{
+			t.transplant(y, y.Right)
+		}
+		t.transplant(z, y)
+		y._setLeft(z.Left)
+	}
+}
+
+func SearchTreeNode (x *TreeNode, k int) *TreeNode{
+	if x == nil || x.Value == k{
+		return x
+	}
+	if k < x.Value{
+		return SearchTreeNode(x.Left, k)
+	}else{
+		return SearchTreeNode(x.Right, k)
+	}
+}
+
+func (t *BinaryTree)transplant(u *TreeNode, v *TreeNode){
+	if u.Parent == nil{
+		t.Root = v
+	} else if u == u.Parent.Left {
+		u.Parent._setLeft(v)
+	} else if u.Parent.Right == u {
+		u.Parent._setRight(v)
+	}
+}
+
+
 func (t *BinaryTree)Inorder() string{
 	return _inorder(t.Root, "")
 }
@@ -66,7 +103,12 @@ func (t *BinaryTree)Postorder() string{
 }
 
 func _newTreeNode(val int) *TreeNode {
-	n := &TreeNode{Value:val,Left: nil, Right:nil, Parent:nil}
+	n := &TreeNode{
+		Value:val,
+		Left: nil,
+		Right:nil,
+		Parent:nil,
+	}
 	return n
 }
 
@@ -129,6 +171,20 @@ func _preorder(n *TreeNode, result string) string {
 	return result
 }
 
+
+func treeMinimum(node *TreeNode) *TreeNode {
+	for node.Left != nil{
+		node = node.Left
+	}
+	return  node
+}
+
+func treeMaximum(node *TreeNode) *TreeNode {
+	for node.Right != nil{
+		node = node.Right
+	}
+	return  node
+}
 
 // helper function for t.depth
 func _calculateDepth(n *TreeNode, depth uint) uint {
