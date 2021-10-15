@@ -30,8 +30,9 @@ func (t *BinaryTree) Depth() uint {
 	return _calculateDepth(t.Root, 0)
 }
 
-func (t *BinaryTree)Insert(k int) *TreeNode{
-	newNode := _newTreeNode(k)
+// Insert the new node with given value.
+func (t *BinaryTree)Insert(value int) *TreeNode{
+	newNode := _newTreeNode(value)
 	x := t.Root
 	var y *TreeNode
 	for x != nil {
@@ -53,39 +54,42 @@ func (t *BinaryTree)Insert(k int) *TreeNode{
 	return newNode
 }
 
-func (t *BinaryTree)Delete (z *TreeNode){
-	if z.Left == nil{
-		t.transplant(z, z.Right)
-	} else if z.Right == nil{
-		t.transplant(z, z.Left)
+// Delete the given node from the tree.
+func (t *BinaryTree)Delete (node *TreeNode){
+	if node.Left == nil{
+		t.transplant(node, node.Right)
+	} else if node.Right == nil{
+		t.transplant(node, node.Left)
 	} else{
-		y := treeMinimum(z.Right)
-		if y.Parent != z{
+		y := treeMinimum(node.Right)
+		if y.Parent != node {
 			t.transplant(y, y.Right)
 		}
-		t.transplant(z, y)
-		y._setLeft(z.Left)
+		t.transplant(node, y)
+		y._setLeft(node.Left)
 	}
 }
 
-func SearchTreeNode (x *TreeNode, k int) *TreeNode{
-	if x == nil || x.Value == k{
-		return x
+// SearchTreeNode return the node that has value equal to given value.
+//  Return nil if no matching value found.
+func SearchTreeNode (root *TreeNode, value int) *TreeNode{
+	if root == nil || root.Value == value {
+		return root
 	}
-	if k < x.Value{
-		return SearchTreeNode(x.Left, k)
+	if value < root.Value{
+		return SearchTreeNode(root.Left, value)
 	}else{
-		return SearchTreeNode(x.Right, k)
+		return SearchTreeNode(root.Right, value)
 	}
 }
-
-func (t *BinaryTree)transplant(u *TreeNode, v *TreeNode){
-	if u.Parent == nil{
-		t.Root = v
-	} else if u == u.Parent.Left {
-		u.Parent._setLeft(v)
-	} else if u.Parent.Right == u {
-		u.Parent._setRight(v)
+// transplant replaces a subtree rooted at node with replacementNode.
+func (t *BinaryTree)transplant(node *TreeNode, replacementNode *TreeNode){
+	if node.Parent == nil{
+		t.Root = replacementNode
+	} else if node == node.Parent.Left {
+		node.Parent._setLeft(replacementNode)
+	} else if node.Parent.Right == node {
+		node.Parent._setRight(replacementNode)
 	}
 }
 
