@@ -33,6 +33,17 @@ func TestTreePostOrderDepth1(t *testing.T) {
 	testHelper.VerifyStringsAreEqual(t, " 2 1 0", tree.Postorder())
 }
 
+func TestEmptyTree(t *testing.T) {
+	tree := NewBinaryTreeEmpty()
+	testHelper.VerifyStringsAreEqual(t, "", tree.Inorder())
+	testHelper.VerifyStringsAreEqual(t, "", tree.Preorder())
+	testHelper.VerifyStringsAreEqual(t, "", tree.Postorder())
+	tree.Insert(0)
+	testHelper.VerifyStringsAreEqual(t, " 0", tree.Inorder())
+	testHelper.VerifyStringsAreEqual(t, " 0", tree.Preorder())
+	testHelper.VerifyStringsAreEqual(t, " 0", tree.Postorder())
+}
+
 
 func getSampleTestTree() *BinaryTree {
 	tree := NewBinaryTree(0)
@@ -48,7 +59,8 @@ func getSampleTestTree() *BinaryTree {
 }
 
 func getSampleTreeWithDepth1() *BinaryTree {
-	tree := NewBinaryTree(0)
+	tree := NewBinaryTreeEmpty()
+	tree.Insert(0)
 	tree.Insert(1)
 	tree.Insert(2)
 	return tree

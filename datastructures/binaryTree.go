@@ -17,6 +17,10 @@ type BinaryTree struct {
 	Root *TreeNode
 }
 
+func NewBinaryTreeEmpty() *BinaryTree {
+	return &BinaryTree{Root: nil}
+}
+
 func NewBinaryTree(rootValue int) *BinaryTree {
 	root := _newTreeNode(rootValue)
 	return &BinaryTree{Root: root}
@@ -42,9 +46,9 @@ func (t *BinaryTree)Insert(k int) *TreeNode{
 	if y == nil{ // Empty tree
 		t.Root = newNode
 	} else if newNode.Value < y.Value {
-		y.Left = newNode
+		y._setLeft(newNode)
 	} else {
-		y.Right = newNode
+		y._setRight(newNode)
 	}
 	return newNode
 }
@@ -64,6 +68,20 @@ func (t *BinaryTree)Postorder() string{
 func _newTreeNode(val int) *TreeNode {
 	n := &TreeNode{Value:val,Left: nil, Right:nil, Parent:nil}
 	return n
+}
+
+func (n *TreeNode)_setLeft(node *TreeNode){
+	n.Left = node
+	if node != nil {
+		node.Parent = n
+	}
+}
+
+func (n *TreeNode)_setRight(node *TreeNode){
+	n.Right = node
+	if node != nil {
+		node.Parent = n
+	}
 }
 
 // Inorder traversal print left node, Root, right node order
