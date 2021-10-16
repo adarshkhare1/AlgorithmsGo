@@ -1,4 +1,4 @@
-package datastructures
+package linkedList
 
 import (
 	"Algorithms/testHelper"

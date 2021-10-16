@@ -1,4 +1,4 @@
-package datastructures
+package binaryTree
 
 // package main
 
@@ -6,12 +6,6 @@ import (
 	"strconv"
 )
 
-type TreeNode struct {
-	Value int
-	Left  *TreeNode
-	Right *TreeNode
-	Parent *TreeNode
-}
 
 type BinaryTree struct {
 	Root *TreeNode
@@ -26,12 +20,20 @@ func NewBinaryTree(rootValue int) *BinaryTree {
 	return &BinaryTree{Root: root}
 }
 
+type TreeNode struct {
+	Value int
+	Left  *TreeNode
+	Right *TreeNode
+	Parent *TreeNode
+}
+
+
 func (t *BinaryTree) Depth() uint {
 	return _calculateDepth(t.Root, 0)
 }
 
 // Insert the new node with given value.
-func (t *BinaryTree)Insert(value int) *TreeNode{
+func (t *BinaryTree)Insert(value int) *TreeNode {
 	newNode := _newTreeNode(value)
 	x := t.Root
 	var y *TreeNode
@@ -72,7 +74,7 @@ func (t *BinaryTree)Delete (node *TreeNode){
 
 // SearchTreeNode return the node that has value equal to given value.
 //  Return nil if no matching value found.
-func SearchTreeNode (root *TreeNode, value int) *TreeNode{
+func SearchTreeNode (root *TreeNode, value int) *TreeNode {
 	if root == nil || root.Value == value {
 		return root
 	}

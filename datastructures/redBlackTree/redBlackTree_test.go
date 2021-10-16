@@ -1,42 +1,31 @@
-package datastructures
+package redBlackTree
 
 import (
 	"Algorithms/testHelper"
 	"testing"
 )
 
-
-
-func TestTreeTraversal(t *testing.T) {
+func TestRBTreeTraversal(t *testing.T) {
 	tree := getSampleTestTree()
-	testHelper.VerifyIntsAreEqual(t, treeMaximum(tree.Root).Value, 10)
-	testHelper.VerifyIntsAreEqual(t, treeMinimum(tree.Root).Value, 0)
-	testHelper.VerifyUintsAreEqual(t, 6, tree.Depth())
+	testHelper.VerifyIntsAreEqual(t, 10, tree.Root.TreeMaximum().Value)
+	testHelper.VerifyIntsAreEqual(t, 0, tree.Root.TreeMinimum().Value)
+	testHelper.VerifyUintsAreEqual(t, 4, tree.Depth())
 	testHelper.VerifyStringsAreEqual(t, " 0 1 2 3 4 5 6 10", tree.Inorder())
-	testHelper.VerifyStringsAreEqual(t, " 0 1 4 3 2 10 6 5", tree.Preorder())
-	testHelper.VerifyStringsAreEqual(t, " 2 3 5 6 10 4 1 0", tree.Postorder())
 }
 
 func TestTreeTraversalDepth1(t *testing.T) {
 	tree := getSampleTreeWithDepth1()
-	testHelper.VerifyIntsAreEqual(t, treeMaximum(tree.Root).Value, 2)
-	testHelper.VerifyIntsAreEqual(t, treeMinimum(tree.Root).Value, 0)
+	testHelper.VerifyIntsAreEqual(t, 2, tree.Root.TreeMaximum().Value)
+	testHelper.VerifyIntsAreEqual(t, 0, tree.Root.TreeMinimum().Value)
 	testHelper.VerifyUintsAreEqual(t, 2, tree.Depth())
 	testHelper.VerifyStringsAreEqual(t, " 0 1 2", tree.Inorder())
-	testHelper.VerifyStringsAreEqual(t, " 1 0 2", tree.Preorder())
-	testHelper.VerifyStringsAreEqual(t, " 0 2 1", tree.Postorder())
 }
 
-
-func TestEmptyTree(t *testing.T) {
-	tree := NewBinaryTreeEmpty()
+func TestEmptyRBTree(t *testing.T) {
+	tree := NewRedBlackBinaryTreeEmpty()
 	testHelper.VerifyStringsAreEqual(t, "", tree.Inorder())
-	testHelper.VerifyStringsAreEqual(t, "", tree.Preorder())
-	testHelper.VerifyStringsAreEqual(t, "", tree.Postorder())
 	tree.Insert(0)
 	testHelper.VerifyStringsAreEqual(t, " 0", tree.Inorder())
-	testHelper.VerifyStringsAreEqual(t, " 0", tree.Preorder())
-	testHelper.VerifyStringsAreEqual(t, " 0", tree.Postorder())
 }
 
 func TestTreeDeleteRoot(t *testing.T) {
@@ -67,23 +56,21 @@ func TestTreeDeleteNodes(t *testing.T) {
 	testHelper.VerifyStringsAreEqual(t, "", tree.Inorder())
 }
 
-
-
-func getSampleTestTree() *BinaryTree {
-	tree := NewBinaryTree(0)
+func getSampleTestTree() *RedBlackTree {
+	tree := NewRedBlackTree(0)
 	tree.Insert(1)
 	tree.Insert(4)
 	tree.Insert(3)
-	tree.Insert(10)
+
 	tree.Insert(6)
 	tree.Insert(5)
 	tree.Insert(2)
-
+	tree.Insert(10)
 	return tree
 }
 
-func getSampleTreeWithDepth1() *BinaryTree {
-	tree := NewBinaryTreeEmpty()
+func getSampleTreeWithDepth1() *RedBlackTree {
+	tree := NewRedBlackBinaryTreeEmpty()
 	tree.Insert(1)
 	tree.Insert(2)
 	tree.Insert(0)
