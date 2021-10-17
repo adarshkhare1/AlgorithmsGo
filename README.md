@@ -12,7 +12,7 @@ It is work in progress.
   - [Doubly Linked List](/datastructures/linkedList/doubleLinkedList.go)
   - [Priority Queue](/datastructures/priorityQueue.go)
   - [Queue](/datastructures/queue.go)
-  - [Red Black Tree](/datastructures/redBlackTreeTree/redBlackTree.go)
+  - [Red Black Tree](/datastructures/redBlackTree/redBlackTree.go)
   - [Singly Linked List](/datastructures/linkedList/linkedList.go)
   - [Stack](/datastructures/stack.go)
 ## Concurrency - multi core processing
