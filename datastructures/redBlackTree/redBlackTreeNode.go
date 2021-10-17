@@ -10,18 +10,18 @@ const (
 )
 
 type RedBlackTreeNode struct {
-	Value  int
-	Left   *RedBlackTreeNode
+	Key  int
+	Left *RedBlackTreeNode
 	Right  *RedBlackTreeNode
 	Parent *RedBlackTreeNode
 	Color  Color
 	IsNil  bool
 }
 
-func _newRedBlackTreeNode(value int) *RedBlackTreeNode {
+func _newRedBlackTreeNode(k int) *RedBlackTreeNode {
 	n := &RedBlackTreeNode{
-		Value:  value,
-		Parent: nil,
+		Key:    k,
+		Parent: _nilRedBlackTreeNode(nil),
 		Color:  Red,
 		IsNil:  false,
 	}
@@ -32,7 +32,7 @@ func _newRedBlackTreeNode(value int) *RedBlackTreeNode {
 
 func _nilRedBlackTreeNode(parent *RedBlackTreeNode) *RedBlackTreeNode {
 		return &RedBlackTreeNode{
-			Value:  math.MinInt64,
+			Key:    math.MinInt64,
 			Left:   nil,
 			Right:  nil,
 			Parent: parent,
@@ -42,14 +42,21 @@ func _nilRedBlackTreeNode(parent *RedBlackTreeNode) *RedBlackTreeNode {
 }
 
 func (n *RedBlackTreeNode)_setLeft(node *RedBlackTreeNode){
-	if !n.IsNil {
+	if n == node {
+		panic("Children cannot be set to itself.")
+	}
+	if !n.IsNil{
 		n.Left = node
+		node.Parent = n
 	}else {
 		panic("Children for nilNode is not allowed.")
 	}
 }
 
 func (n *RedBlackTreeNode)_setRight(node *RedBlackTreeNode){
+	if n == node {
+		panic("Children cannot be set to itself.")
+	}
 	if !n.IsNil{
 		n.Right = node
 		node.Parent = n

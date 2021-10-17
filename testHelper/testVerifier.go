@@ -2,6 +2,12 @@ package testHelper
 
 import "testing"
 
+func VerifyTrue(t *testing.T,  actual bool) {
+	if !actual {
+		t.Errorf("Condition is false, expected: true")
+	}
+}
+
 func VerifyStringsAreEqual(t *testing.T, expected, actual string) {
 	if actual != expected {
 		t.Errorf("fail actual: %q, expected: %q", actual, expected)
@@ -42,5 +48,11 @@ func VerifyArraysAreEqual(t *testing.T, expected, actual []int) {
 		if v != expected[i] {
 			t.Errorf("fail array value mismatch on %d, actual: %d, expected: %d", i, v, expected[i])
 		}
+	}
+}
+
+func VerifyArrayIsSortedAscending(t *testing.T,  nums []int) {
+	for i := 1; i < len(nums); i++ {
+		VerifyTrue(t, nums[i-1] <= nums[i])
 	}
 }

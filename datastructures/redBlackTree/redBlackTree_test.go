@@ -2,21 +2,25 @@ package redBlackTree
 
 import (
 	"Algorithms/testHelper"
+	"fmt"
+	"math/rand"
+	"strconv"
+	"strings"
 	"testing"
 )
 
 func TestRBTreeTraversal(t *testing.T) {
 	tree := getSampleTestTree()
-	testHelper.VerifyIntsAreEqual(t, 10, tree.Root.TreeMaximum().Value)
-	testHelper.VerifyIntsAreEqual(t, 0, tree.Root.TreeMinimum().Value)
+	testHelper.VerifyIntsAreEqual(t, 10, tree.Root.TreeMaximum().Key)
+	testHelper.VerifyIntsAreEqual(t, 0, tree.Root.TreeMinimum().Key)
 	testHelper.VerifyUintsAreEqual(t, 4, tree.Depth())
 	testHelper.VerifyStringsAreEqual(t, " 0 1 2 3 4 5 6 10", tree.Inorder())
 }
 
 func TestTreeTraversalDepth1(t *testing.T) {
 	tree := getSampleTreeWithDepth1()
-	testHelper.VerifyIntsAreEqual(t, 2, tree.Root.TreeMaximum().Value)
-	testHelper.VerifyIntsAreEqual(t, 0, tree.Root.TreeMinimum().Value)
+	testHelper.VerifyIntsAreEqual(t, 2, tree.Root.TreeMaximum().Key)
+	testHelper.VerifyIntsAreEqual(t, 0, tree.Root.TreeMinimum().Key)
 	testHelper.VerifyUintsAreEqual(t, 2, tree.Depth())
 	testHelper.VerifyStringsAreEqual(t, " 0 1 2", tree.Inorder())
 }
@@ -56,6 +60,61 @@ func TestTreeDeleteNodes(t *testing.T) {
 	testHelper.VerifyStringsAreEqual(t, "", tree.Inorder())
 }
 
+func TestRBTreeLargeSizeWithRandomNumbers(t *testing.T) {
+	nCount := 1024
+	maxKeyValue := 100000
+	tree := buildATreeWithRandomNumbers(nCount, maxKeyValue)
+	nums := getNodeValuesArray(tree.Inorder())
+	testHelper.VerifyIntsAreEqual(t, nCount, len(nums))
+	testHelper.VerifyArrayIsSortedAscending(t,nums)
+	fmt.Printf("Tree Depth is %d for %d nodes.\n", tree.Depth(), nCount)
+}
+
+func TestRBTreeLargeSizeRandomDeletion(t *testing.T) {
+	nCount := 1024
+	maxKeyValue := 100000
+	tree := buildATreeWithRandomNumbers(nCount, maxKeyValue)
+	nums := getNodeValuesArray(tree.Inorder())
+	//Delete 10 nodes
+	deleteTreeNodesRandomly(tree, nums, 20)
+	nums = getNodeValuesArray(tree.Inorder())
+	testHelper.VerifyIntsAreEqual(t, nCount-20, len(nums))
+	testHelper.VerifyArrayIsSortedAscending(t,nums)
+}
+
+func buildATreeWithRandomNumbers(nodeCount int, maxKeyValue int) *RedBlackTree {
+	tree := NewRedBlackBinaryTreeEmpty()
+	for i := 0; i < nodeCount; i++ {
+		n := rand.Intn(maxKeyValue)
+		tree.Insert(n)
+	}
+	return tree
+}
+
+func deleteTreeNodesRandomly(tree *RedBlackTree, nums []int, countToDelete int) {
+	nCount := len(nums)
+	if countToDelete > (nCount-countToDelete) {
+		panic("Cannot delete more nodes than we have.")
+	}
+	for i := 0; i < countToDelete; i++ {
+		n := rand.Intn(nCount - countToDelete) // just to be safe
+		nodeToDelete := SearchTreeNode(tree.Root, nums[n])
+		tree.Delete(nodeToDelete)
+	}
+}
+
+
+func getNodeValuesArray(str string) []int {
+	strs := strings.Split(str, " ")
+	nums := make([]int, len(strs)-1)
+	for i := range nums {
+		if strings.TrimSpace(strs[i]) != "" {
+			nums[i], _ = strconv.Atoi(strs[i])
+		}
+	}
+	return nums
+}
+
 func getSampleTestTree() *RedBlackTree {
 	tree := NewRedBlackTree(0)
 	tree.Insert(1)
@@ -71,8 +130,8 @@ func getSampleTestTree() *RedBlackTree {
 
 func getSampleTreeWithDepth1() *RedBlackTree {
 	tree := NewRedBlackBinaryTreeEmpty()
-	tree.Insert(1)
 	tree.Insert(2)
+	tree.Insert(1)
 	tree.Insert(0)
 	return tree
 }

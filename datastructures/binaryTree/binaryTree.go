@@ -21,8 +21,8 @@ func NewBinaryTree(rootValue int) *BinaryTree {
 }
 
 type TreeNode struct {
-	Value int
-	Left  *TreeNode
+	Key  int
+	Left *TreeNode
 	Right *TreeNode
 	Parent *TreeNode
 }
@@ -39,7 +39,7 @@ func (t *BinaryTree)Insert(value int) *TreeNode {
 	var y *TreeNode
 	for x != nil {
 		y = x
-		if newNode.Value < x.Value {
+		if newNode.Key < x.Key {
 			x = x.Left
 		} else {
 			x = x.Right
@@ -48,7 +48,7 @@ func (t *BinaryTree)Insert(value int) *TreeNode {
 	newNode.Parent = y
 	if y == nil{ // Empty tree
 		t.Root = newNode
-	} else if newNode.Value < y.Value {
+	} else if newNode.Key < y.Key {
 		y._setLeft(newNode)
 	} else {
 		y._setRight(newNode)
@@ -75,10 +75,10 @@ func (t *BinaryTree)Delete (node *TreeNode){
 // SearchTreeNode return the node that has value equal to given value.
 //  Return nil if no matching value found.
 func SearchTreeNode (root *TreeNode, value int) *TreeNode {
-	if root == nil || root.Value == value {
+	if root == nil || root.Key == value {
 		return root
 	}
-	if value < root.Value{
+	if value < root.Key {
 		return SearchTreeNode(root.Left, value)
 	}else{
 		return SearchTreeNode(root.Right, value)
@@ -108,12 +108,12 @@ func (t *BinaryTree)Postorder() string{
 	return _postOrder(t.Root, "")
 }
 
-func _newTreeNode(val int) *TreeNode {
+func _newTreeNode(k int) *TreeNode {
 	n := &TreeNode{
-		Value:val,
-		Left: nil,
-		Right:nil,
-		Parent:nil,
+		Key:    k,
+		Left:   nil,
+		Right:  nil,
+		Parent: nil,
 	}
 	return n
 }
@@ -140,7 +140,7 @@ func _inorder(n *TreeNode, result string) string {
 	if n.Left != nil {
 		result = _inorder(n.Left, result)
 	}
-	result += " " + strconv.Itoa(n.Value)
+	result += " " + strconv.Itoa(n.Key)
 	if n.Right != nil {
 		result = _inorder(n.Right, result)
 	}
@@ -158,7 +158,7 @@ func _postOrder( n *TreeNode, result string) string {
 	if n.Right != nil {
 		result = _postOrder(n.Right, result)
 	}
-	result += " " + strconv.Itoa(n.Value)
+	result += " " + strconv.Itoa(n.Key)
 	return result
 }
 
@@ -167,7 +167,7 @@ func _preorder(n *TreeNode, result string) string {
 	if n == nil {
 		return result
 	}
-	result += " " + strconv.Itoa(n.Value)
+	result += " " + strconv.Itoa(n.Key)
 	if n.Left != nil {
 		result = _preorder(n.Left, result)
 	}

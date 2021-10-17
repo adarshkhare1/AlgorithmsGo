@@ -9,7 +9,6 @@ type RedBlackTree struct {
 }
 
 
-
 func NewRedBlackBinaryTreeEmpty() *RedBlackTree {
 	return &RedBlackTree{Root: _nilRedBlackTreeNode(nil)}
 }
@@ -23,13 +22,13 @@ func (t *RedBlackTree) Depth() uint {
 	return _calculateRBTreeDepth(t.Root, 0)
 }
 
-func (t *RedBlackTree) Insert(value int){
-	z := _newRedBlackTreeNode(value)
+func (t *RedBlackTree) Insert(k int){
+	z := _newRedBlackTreeNode(k)
 	x := t.Root
 	y := _nilRedBlackTreeNode(x)
 	for !x.IsNil{
 		y = x
-		if z.Value < x.Value {
+		if z.Key < x.Key {
 			x = x.Left
 		} else {
 			x = x.Right
@@ -38,7 +37,7 @@ func (t *RedBlackTree) Insert(value int){
 	z.Parent = y
 	if y.IsNil{
 		t.Root = z
-	} else  if z.Value < y.Value {
+	} else  if z.Key < y.Key {
 		y._setLeft(z)
 	} else {
 		y._setRight(z)
@@ -48,7 +47,7 @@ func (t *RedBlackTree) Insert(value int){
 }
 
 func (t *RedBlackTree) Delete(z *RedBlackTreeNode){
-	if z.IsNil{
+	if z == nil || z.IsNil{
 		return // nil node cannot be deleted from the tree
 	}
 	y := z
@@ -63,10 +62,9 @@ func (t *RedBlackTree) Delete(z *RedBlackTreeNode){
 	}else {
 		y = z.Right.TreeMinimum()
 		yColor = y.Color
-		if y.Parent == z{
-			if x != nil {
-				x.Parent = y
-			}
+		x = y.Right
+		if y.Parent == z {
+			x.Parent = y
 		}else {
 			t.transplant(y, y.Right)
 			y._setRight(z.Right)
@@ -103,10 +101,10 @@ func (t *RedBlackTree)Inorder() string{
 // SearchTreeNode return the node that has value equal to given value.
 //Return nil if no matching value found.
 func SearchTreeNode (root *RedBlackTreeNode, value int) *RedBlackTreeNode {
-	if root == nil || root.Value == value {
+	if root == nil || root.Key == value {
 		return root
 	}
-	if value < root.Value{
+	if value < root.Key {
 		return SearchTreeNode(root.Left, value)
 	}else{
 		return SearchTreeNode(root.Right, value)
@@ -121,7 +119,7 @@ func _rbInorder(n *RedBlackTreeNode, result string) string {
 	if !n.Left.IsNil {
 		result = _rbInorder(n.Left, result)
 	}
-	result += " " + strconv.Itoa(n.Value)
+	result += " " + strconv.Itoa(n.Key)
 	if !n.Right.IsNil {
 		result = _rbInorder(n.Right, result)
 	}
@@ -129,15 +127,15 @@ func _rbInorder(n *RedBlackTreeNode, result string) string {
 }
 
 func (t *RedBlackTree) leftRotate(x *RedBlackTreeNode){
-	if x != nil && !x.IsNil {
+	if !x.IsNil && !x.Right.IsNil {
 		y := x.Right
 		x._setRight(y.Left)
 		y.Parent = x.Parent
-		if x.Parent == nil {
+		if x.Parent.IsNil{
 			t.Root = y
 		} else if x == x.Parent.Left {
 			x.Parent._setLeft(y)
-		} else {
+		} else{
 			x.Parent._setRight(y)
 		}
 		y._setLeft(x)
@@ -145,23 +143,23 @@ func (t *RedBlackTree) leftRotate(x *RedBlackTreeNode){
 }
 
 func (t *RedBlackTree) rightRotate(y *RedBlackTreeNode){
-	if y != nil && !y.IsNil {
+	if !y.IsNil && !y.Left.IsNil {
 		x := y.Left
 		y._setLeft(x.Right)
 		x.Parent = y.Parent
-		if y.Parent == nil {
+		if y.Parent.IsNil {
 			t.Root = x
 		} else if y == y.Parent.Right {
-			x.Parent._setRight(y)
+			y.Parent._setRight(x)
 		}else {
-			x.Parent._setLeft(y)
+			y.Parent._setLeft(x)
 		}
 		x._setRight(y)
 	}
 }
 
 func (t *RedBlackTree) insertFixup(z *RedBlackTreeNode) {
-	if z.Parent == nil || z.Parent.Parent == nil{
+	if z.Parent.IsNil || z.Parent.Parent.IsNil{
 		return // it is root, nothing to fixup
 	}
 	for z.Parent.Color == Red {
@@ -182,29 +180,23 @@ func (t *RedBlackTree) insertFixup(z *RedBlackTreeNode) {
 				t.rightRotate(z.Parent.Parent)
 			}
 		} else {
-			if z.Parent == z.Parent.Parent.Right {
-				y := z.Parent.Parent.Left
-				if y.Color == Red {
-					z.Parent.Color = Black
-					y.Color = Black
-					z.Parent.Parent.Color = Red
-					z = z.Parent.Parent
-				} else if z == z.Parent.Left {
-					z = z.Parent
-					t.rightRotate(z)
-				}
-				if z.Parent != nil {
-					z.Parent.Color = Black
-					if z.Parent.Parent != nil {
-						z.Parent.Parent.Color = Red
-					}
-				}
-				if z.Parent != nil && z.Parent.Parent != nil {
-					t.leftRotate(z.Parent.Parent)
-				}
+			y := z.Parent.Parent.Left
+			if y.Color == Red {
+				z.Parent.Color = Black
+				y.Color = Black
+				z.Parent.Parent.Color = Red
+				z = z.Parent.Parent
+			} else if z == z.Parent.Left {
+				z = z.Parent
+				t.rightRotate(z)
+			}
+			z.Parent.Color = Black
+			if !z.Parent.IsNil {
+				z.Parent.Parent.Color = Red
+				t.leftRotate(z.Parent.Parent)
 			}
 		}
-		if z.Parent == nil || z.Parent.Parent == nil{
+		if z.Parent.IsNil || z.Parent.Parent.IsNil{
 			break
 		}
 	}
@@ -234,9 +226,11 @@ func (t *RedBlackTree) deleteFixup(x *RedBlackTreeNode){
 					t.rightRotate(w)
 					w = x.Parent.Right
 				}
-				w.Color = x.Parent.Color
-				x.Parent.Color = Black
-				x.Right.Color = Black
+				if !w.IsNil {
+					w.Color = x.Parent.Color
+					x.Parent.Color = Black
+					w.Right.Color = Black
+				}
 				t.leftRotate(x.Parent)
 				x = t.Root
 			}
@@ -258,9 +252,11 @@ func (t *RedBlackTree) deleteFixup(x *RedBlackTreeNode){
 					t.leftRotate(w)
 					w = x.Parent.Right
 				}
-				w.Color = x.Parent.Color
-				x.Parent.Color = Black
-				x.Left.Color = Black
+				if !w.IsNil {
+					w.Color = x.Parent.Color
+					x.Parent.Color = Black
+					w.Left.Color = Black
+				}
 				t.rightRotate(x.Parent)
 				x = t.Root
 			}

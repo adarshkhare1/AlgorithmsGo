@@ -9,8 +9,8 @@ import (
 
 func TestTreeTraversal(t *testing.T) {
 	tree := getSampleTestTree()
-	testHelper.VerifyIntsAreEqual(t, treeMaximum(tree.Root).Value, 10)
-	testHelper.VerifyIntsAreEqual(t, treeMinimum(tree.Root).Value, 0)
+	testHelper.VerifyIntsAreEqual(t, treeMaximum(tree.Root).Key, 10)
+	testHelper.VerifyIntsAreEqual(t, treeMinimum(tree.Root).Key, 0)
 	testHelper.VerifyUintsAreEqual(t, 6, tree.Depth())
 	testHelper.VerifyStringsAreEqual(t, " 0 1 2 3 4 5 6 10", tree.Inorder())
 	testHelper.VerifyStringsAreEqual(t, " 0 1 4 3 2 10 6 5", tree.Preorder())
@@ -19,8 +19,8 @@ func TestTreeTraversal(t *testing.T) {
 
 func TestTreeTraversalDepth1(t *testing.T) {
 	tree := getSampleTreeWithDepth1()
-	testHelper.VerifyIntsAreEqual(t, treeMaximum(tree.Root).Value, 2)
-	testHelper.VerifyIntsAreEqual(t, treeMinimum(tree.Root).Value, 0)
+	testHelper.VerifyIntsAreEqual(t, treeMaximum(tree.Root).Key, 2)
+	testHelper.VerifyIntsAreEqual(t, treeMinimum(tree.Root).Key, 0)
 	testHelper.VerifyUintsAreEqual(t, 2, tree.Depth())
 	testHelper.VerifyStringsAreEqual(t, " 0 1 2", tree.Inorder())
 	testHelper.VerifyStringsAreEqual(t, " 1 0 2", tree.Preorder())
