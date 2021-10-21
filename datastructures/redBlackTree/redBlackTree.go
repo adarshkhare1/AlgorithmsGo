@@ -186,12 +186,12 @@ func (t *RedBlackTree) insertFixup(z *RedBlackTreeNode) {
 				y.Color = Black
 				z.Parent.Parent.Color = Red
 				z = z.Parent.Parent
-			} else if z == z.Parent.Left {
-				z = z.Parent
-				t.rightRotate(z)
-			}
-			z.Parent.Color = Black
-			if !z.Parent.IsNil {
+			} else{
+				if z == z.Parent.Left {
+					z = z.Parent
+					t.rightRotate(z)
+				}
+				z.Parent.Color = Black
 				z.Parent.Parent.Color = Red
 				t.leftRotate(z.Parent.Parent)
 			}
@@ -280,7 +280,7 @@ func _calculateRBTreeDepth(n *RedBlackTreeNode, depth uint) uint {
 	if n.IsNil {
 		return depth
 	}
-	return _max(_calculateRBTreeDepth(n.Left, depth+1), _calculateRBTreeDepth(n.Right, depth+1))
+	return _max(_calculateRBTreeDepth(n.Left, depth), _calculateRBTreeDepth(n.Right, depth))+1
 }
 
 func _max(a, b uint) uint {

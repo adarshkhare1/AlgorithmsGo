@@ -61,7 +61,7 @@ func TestTreeDeleteNodes(t *testing.T) {
 }
 
 func TestRBTreeLargeSizeWithRandomNumbers(t *testing.T) {
-	nCount := 1024
+	nCount := 512
 	maxKeyValue := 100000
 	tree := buildATreeWithRandomNumbers(nCount, maxKeyValue)
 	nums := getNodeValuesArray(tree.Inorder())
@@ -75,10 +75,11 @@ func TestRBTreeLargeSizeRandomDeletion(t *testing.T) {
 	maxKeyValue := 100000
 	tree := buildATreeWithRandomNumbers(nCount, maxKeyValue)
 	nums := getNodeValuesArray(tree.Inorder())
-	//Delete 10 nodes
-	deleteTreeNodesRandomly(tree, nums, 20)
+	//Delete some nodes randomly
+	countToDelete := 64
+	deleteTreeNodesRandomly(tree, nums, countToDelete)
 	nums = getNodeValuesArray(tree.Inorder())
-	testHelper.VerifyIntsAreEqual(t, nCount-20, len(nums))
+	testHelper.VerifyIntsAreEqual(t, nCount-countToDelete+1, len(nums))
 	testHelper.VerifyArrayIsSortedAscending(t,nums)
 }
 

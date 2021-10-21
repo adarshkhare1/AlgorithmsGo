@@ -9,6 +9,7 @@ const (
 	Black       = 1
 )
 
+// RedBlackTreeNode Red Black tree node structure.
 type RedBlackTreeNode struct {
 	Key  int
 	Left *RedBlackTreeNode
