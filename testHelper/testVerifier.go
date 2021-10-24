@@ -1,8 +1,11 @@
 package testHelper
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
-func VerifyTrue(t *testing.T,  actual bool) {
+func VerifyTrue(t *testing.T, actual bool) {
 	if !actual {
 		t.Errorf("Condition is false, expected: true")
 	}
@@ -15,14 +18,26 @@ func VerifyStringsAreEqual(t *testing.T, expected, actual string) {
 }
 
 func VerifyIntsAreEqual(t *testing.T, expected int, actual int) {
-		if actual != expected {
-			t.Errorf("fail actual: %d, expected: %d", actual, expected)
-		}
+	if actual != expected {
+		t.Errorf("fail actual: %d, expected: %d", actual, expected)
+	}
 }
 
 func VerifyUintsAreEqual(t *testing.T, expected uint, actual uint) {
 	if actual != expected {
 		t.Errorf("fail actual: %d, expected: %d", actual, expected)
+	}
+}
+
+func VerifyNil(t *testing.T, i interface{}) {
+	if !reflect.ValueOf(i).IsNil() {
+		t.Errorf("fail expecting nil, value is not nil")
+	}
+}
+
+func VerifyNotNil(t *testing.T, i interface{}) {
+	if reflect.ValueOf(i).IsNil() {
+		t.Errorf("fail expecting not nil, value is nil")
 	}
 }
 
@@ -51,7 +66,7 @@ func VerifyArraysAreEqual(t *testing.T, expected, actual []int) {
 	}
 }
 
-func VerifyArrayIsSortedAscending(t *testing.T,  nums []int) {
+func VerifyArrayIsSortedAscending(t *testing.T, nums []int) {
 	for i := 1; i < len(nums); i++ {
 		VerifyTrue(t, nums[i-1] <= nums[i])
 	}

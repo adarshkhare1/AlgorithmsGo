@@ -6,6 +6,7 @@ It is work in progress.
 ---
 ## [Mathematical Preliminaries](/mathematics)
   - [Euclid's Algorithm](/mathematics/euclidean.go)
+  - [Matrix Manipulations](/mathematics/matrix.go)  Matrix addition, subtraction, multiplication, transpose operations
 ## Information Structures
 ### [Data Structures](/datastructures)
   - [Binary Tree](/datastructures/binaryTree/binaryTree.go)
