@@ -6,3 +6,5 @@
   will be the element value.
 - [Find number in sorted array](/searching/sortedArraySearch.go)
   Return the index of the matching element in a sorted array, -1 if element not found.
+- [Find longest common subsequence](/searching/commonSubsequence.go)
+  In two given DNA sequences, find how similar they are.

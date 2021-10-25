@@ -6,7 +6,8 @@ It is work in progress.
 ---
 ## [Mathematical Preliminaries](/mathematics)
   - [Euclid's Algorithm](/mathematics/euclidean.go)
-  - [Matrix Manipulations](/mathematics/matrix.go)  Matrix addition, subtraction, multiplication, transpose operations
+  - [Matrix Manipulations](/mathematics/matrix.go)
+  Matrix addition, subtraction, multiplication, transpose operations
 ## Information Structures
 ### [Data Structures](/datastructures)
   - [Binary Tree](/datastructures/binaryTree/binaryTree.go)
@@ -42,6 +43,10 @@ Sorting algorithms demonstrated using integer lists, because of no generic suppo
 - [Quick Sort](/sorting/quickSort.go)
 
 ## [Searching](/searching)
+  Searching algorithms are basically information retrieval. Basic search problem is locating the record from
+the storage. In addition this section includes some interesting algorithms to search information for pattern
+matches like matching subsequence or sequence with maximum value.
 - [Find Maximum Subarray](/searching/findMaxSubarray.go)
 - [Find number in sorted array](/searching/sortedArraySearch.go)
+- [Find longest common subsequence](/searching/commonSubsequence.go)
 
