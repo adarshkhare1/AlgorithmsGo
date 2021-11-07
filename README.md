@@ -47,6 +47,7 @@ Sorting algorithms demonstrated using integer lists, because of no generic suppo
 the storage. In addition this section includes some interesting algorithms to search information for pattern
 matches like matching subsequence or sequence with maximum value.
 - [Find Maximum Subarray](/searching/findMaxSubarray.go)
-- [Find number in sorted array](/searching/sortedArraySearch.go)
+- [Sorted List - Sequential search with skip](/searching/sortedArraySearch.go)
+- [Sorted List - Binary search](/searching/sortedArraySearch.go)
 - [Find longest common subsequence](/searching/commonSubsequence.go)
 
