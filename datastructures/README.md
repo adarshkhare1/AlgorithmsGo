@@ -1,4 +1,8 @@
 ## Data Structures
+  - [B-Tree](B Tree/bTree.go)
+B-trees are balanced search trees designed to work well on disks or other direct access
+secondary storage. Implementation here will be using file system I/O with one file for
+every node, in other applications this can be any other method of disk i/o operation.
   - [Binary Tree](binaryTree/binaryTree.go)
   - [Doubly Linked List](linkedList/doubleLinkedList.go)
   - [Priority Queue](priorityQueue.go)  

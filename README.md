@@ -11,6 +11,7 @@ It is work in progress.
 ## Information Structures
 ### [Data Structures](/datastructures)
   - [Binary Tree](/datastructures/binaryTree/binaryTree.go)
+  - [B-Tree](B Tree/bTree.go)
   - [Doubly Linked List](/datastructures/linkedList/doubleLinkedList.go)
   - [Priority Queue](/datastructures/priorityQueue.go)
   - [Queue](/datastructures/queue.go)
