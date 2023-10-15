@@ -1,10 +1,9 @@
 package searching
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"testing"
 )
-
 
 func TestSortedArraySearch(t *testing.T) {
 	input := getTestList()
@@ -14,7 +13,7 @@ func TestSortedArraySearch(t *testing.T) {
 	testHelper.VerifyIntsAreEqual(t, 3, FindItemIndexSequentialSkipSearch(input, 7))
 	testHelper.VerifyIntsAreEqual(t, 6, FindItemIndexSequentialSkipSearch(input, 17))
 	testHelper.VerifyIntsAreEqual(t, -1, FindItemIndexSequentialSkipSearch(input, 50))
-
+	
 }
 
 func TestSortedArraySearchSingleElement(t *testing.T) {
@@ -31,7 +30,7 @@ func TestSortedArrayBinarySearch(t *testing.T) {
 	testHelper.VerifyIntsAreEqual(t, 3, FindItemIndexBinarySearch(input, 7))
 	testHelper.VerifyIntsAreEqual(t, 6, FindItemIndexBinarySearch(input, 17))
 	testHelper.VerifyIntsAreEqual(t, -1, FindItemIndexBinarySearch(input, 50))
-
+	
 }
 
 func TestSortedArrayBinarySearchSingleElement(t *testing.T) {

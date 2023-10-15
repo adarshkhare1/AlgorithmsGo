@@ -1,7 +1,7 @@
 package safecollections
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"testing"
 )
 

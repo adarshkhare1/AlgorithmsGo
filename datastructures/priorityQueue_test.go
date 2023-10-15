@@ -1,7 +1,7 @@
 package datastructures
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"testing"
 )
 

@@ -1,7 +1,7 @@
 package datastructures
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"testing"
 )
 
@@ -35,7 +35,7 @@ func TestQueue_Rotation(t *testing.T) {
 	q := NewQueue(capacity)
 	_fillQueue(q, t)
 	// Take few out
-	for i := 0; i < capacity - 2; i++ {
+	for i := 0; i < capacity-2; i++ {
 		n, err := q.Dequeu()
 		testHelper.VerifyIntsAreEqual(t, i, n)
 		testHelper.VerifyErrorNil(t, err)
@@ -45,17 +45,17 @@ func TestQueue_Rotation(t *testing.T) {
 	testHelper.VerifyErrorNil(t, err)
 	err = q.Enqueue(2)
 	testHelper.VerifyErrorNil(t, err)
-
+	
 	//Take 2 more out to hit bottom of the array
 	n := 0
 	n, err = q.Dequeu()
 	testHelper.VerifyIntsAreEqual(t, capacity-2, n)
 	testHelper.VerifyErrorNil(t, err)
-
+	
 	n, err = q.Dequeu()
 	testHelper.VerifyIntsAreEqual(t, capacity-1, n)
 	testHelper.VerifyErrorNil(t, err)
-
+	
 	//Take one more out to trigger dequeue rotation
 	n, err = q.Dequeu()
 	testHelper.VerifyIntsAreEqual(t, 1, n)

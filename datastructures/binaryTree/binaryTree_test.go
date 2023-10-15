@@ -1,11 +1,9 @@
 package binaryTree
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"testing"
 )
-
-
 
 func TestTreeTraversal(t *testing.T) {
 	tree := getSampleTestTree()
@@ -26,7 +24,6 @@ func TestTreeTraversalDepth1(t *testing.T) {
 	testHelper.VerifyStringsAreEqual(t, " 1 0 2", tree.Preorder())
 	testHelper.VerifyStringsAreEqual(t, " 0 2 1", tree.Postorder())
 }
-
 
 func TestEmptyTree(t *testing.T) {
 	tree := NewBinaryTreeEmpty()
@@ -67,8 +64,6 @@ func TestTreeDeleteNodes(t *testing.T) {
 	testHelper.VerifyStringsAreEqual(t, "", tree.Inorder())
 }
 
-
-
 func getSampleTestTree() *BinaryTree {
 	tree := NewBinaryTree(0)
 	tree.Insert(1)
@@ -78,7 +73,7 @@ func getSampleTestTree() *BinaryTree {
 	tree.Insert(6)
 	tree.Insert(5)
 	tree.Insert(2)
-
+	
 	return tree
 }
 

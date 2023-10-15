@@ -1,7 +1,7 @@
 package statistics
 
 import (
-	. "Algorithms/random"
+	. "AlgorithmsGo/random"
 	"fmt"
 	"testing"
 )
@@ -15,7 +15,7 @@ func TestEvaluateKSVariation(t *testing.T) {
 		g := NewRandomGenerator()
 		experiment := NewContinuousSampleSpace()
 		for j := 0; j < numIterations; j++ {
-			num, _ := g.NextNumberWithMax(degreeOfFreedom-1)
+			num, _ := g.NextNumberWithMax(degreeOfFreedom - 1)
 			experiment.AddResult(float64(num))
 		}
 		experiment.EvaluateKSDistribution()
@@ -23,4 +23,3 @@ func TestEvaluateKSVariation(t *testing.T) {
 	fmt.Printf("Average Kolmogorov-Smirnov Variation is %f.\n",
 		x/float64(nExperiments))
 }
-

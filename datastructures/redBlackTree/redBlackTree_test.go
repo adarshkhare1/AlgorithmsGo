@@ -1,7 +1,7 @@
 package redBlackTree
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"fmt"
 	"math/rand"
 	"strconv"
@@ -66,7 +66,7 @@ func TestRBTreeLargeSizeWithRandomNumbers(t *testing.T) {
 	tree := buildATreeWithRandomNumbers(nCount, maxKeyValue)
 	nums := getNodeValuesArray(tree.Inorder())
 	testHelper.VerifyIntsAreEqual(t, nCount, len(nums))
-	testHelper.VerifyArrayIsSortedAscending(t,nums)
+	testHelper.VerifyArrayIsSortedAscending(t, nums)
 	fmt.Printf("Tree Depth is %d for %d nodes.\n", tree.Depth(), nCount)
 }
 
@@ -80,7 +80,7 @@ func TestRBTreeLargeSizeRandomDeletion(t *testing.T) {
 	deleteTreeNodesRandomly(tree, nums, countToDelete)
 	nums = getNodeValuesArray(tree.Inorder())
 	testHelper.VerifyIntsAreEqual(t, nCount-countToDelete+1, len(nums))
-	testHelper.VerifyArrayIsSortedAscending(t,nums)
+	testHelper.VerifyArrayIsSortedAscending(t, nums)
 }
 
 func buildATreeWithRandomNumbers(nodeCount int, maxKeyValue int) *RedBlackTree {
@@ -94,7 +94,7 @@ func buildATreeWithRandomNumbers(nodeCount int, maxKeyValue int) *RedBlackTree {
 
 func deleteTreeNodesRandomly(tree *RedBlackTree, nums []int, countToDelete int) {
 	nCount := len(nums)
-	if countToDelete > (nCount-countToDelete) {
+	if countToDelete > (nCount - countToDelete) {
 		panic("Cannot delete more nodes than we have.")
 	}
 	for i := 0; i < countToDelete; i++ {
@@ -103,7 +103,6 @@ func deleteTreeNodesRandomly(tree *RedBlackTree, nums []int, countToDelete int) 
 		tree.Delete(nodeToDelete)
 	}
 }
-
 
 func getNodeValuesArray(str string) []int {
 	strs := strings.Split(str, " ")
@@ -121,7 +120,7 @@ func getSampleTestTree() *RedBlackTree {
 	tree.Insert(1)
 	tree.Insert(4)
 	tree.Insert(3)
-
+	
 	tree.Insert(6)
 	tree.Insert(5)
 	tree.Insert(2)

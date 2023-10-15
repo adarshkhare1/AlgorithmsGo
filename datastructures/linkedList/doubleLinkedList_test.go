@@ -1,12 +1,12 @@
 package linkedList
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"strconv"
 	"testing"
 )
 
-func verifyDoubleLinkedList(t *testing.T, ll Doublelinkedlist, expected string){
+func verifyDoubleLinkedList(t *testing.T, ll Doublelinkedlist, expected string) {
 	/* read the list until head is not nil */
 	result := ""
 	for cur := ll.Head; cur != nil; cur = cur.Next {
@@ -17,7 +17,7 @@ func verifyDoubleLinkedList(t *testing.T, ll Doublelinkedlist, expected string){
 
 func TestDoublelinkedlistOperations(t *testing.T) {
 	ll := Doublelinkedlist{}
-
+	
 	ll.InsertAtFront(10)
 	ll.Append(20)
 	verifyDoubleLinkedList(t, ll, " 10 20")
@@ -27,11 +27,11 @@ func TestDoublelinkedlistOperations(t *testing.T) {
 	verifyDoubleLinkedList(t, ll, " 10 40 20 30")
 }
 
-func TestDoubleLinkedlist_InsertDelete(t *testing.T){
+func TestDoubleLinkedlist_InsertDelete(t *testing.T) {
 	ll := Doublelinkedlist{}
 	capacity := 5
 	for i := 0; i < capacity; i++ {
-		ll.Append(10*(i+1))
+		ll.Append(10 * (i + 1))
 	}
 	verifyDoubleLinkedList(t, ll, " 10 20 30 40 50")
 	ll.DeleteAt(1)

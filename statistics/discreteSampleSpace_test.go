@@ -1,8 +1,9 @@
 package statistics
 
 import (
-	. "Algorithms/random"
+	. "AlgorithmsGo/random"
 	"fmt"
+	"strconv"
 	"testing"
 )
 
@@ -10,17 +11,17 @@ func TestEvaluateChiSquareVariation(t *testing.T) {
 	degreeOfFreedom := 6
 	x := 0.0
 	numIterations := 100 // Number of iterations in experiment
-	nExperiments := 10 //number of times experiment is repeated
+	nExperiments := 10   //number of times experiment is repeated
 	for i := 0; i < nExperiments; i++ {
 		g := NewRandomGenerator()
 		experiment := NewDiscreteSampleSpace(degreeOfFreedom)
 		for j := 0; j < numIterations; j++ {
-			num, _ := g.NextNumberWithMax(degreeOfFreedom-1)
-			experiment.AddSample(string(num))
+			num, _ := g.NextNumberWithMax(degreeOfFreedom - 1)
+			experiment.AddSample(strconv.Itoa(num))
 		}
 		x += experiment.EvaluateChiSquareVariation()
 	}
-	aveChiSquare := x/ float64(nExperiments)
+	aveChiSquare := x / float64(nExperiments)
 	fmt.Printf("Average ChiSquare Variation for %d degree of freedom is %f.\n",
 		degreeOfFreedom,
 		aveChiSquare)

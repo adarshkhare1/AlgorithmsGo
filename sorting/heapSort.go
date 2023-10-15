@@ -1,9 +1,8 @@
 package sorting
 
 import (
-	. "Algorithms/datastructures"
+	. "AlgorithmsGo/datastructures"
 )
-
 
 func HeapSort(items []int) []int {
 	heap := NewMaxHeap(items)
