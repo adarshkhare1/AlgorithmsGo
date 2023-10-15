@@ -50,4 +50,9 @@ matches like matching subsequence or sequence with maximum value.
 - [Sorted List - Sequential search with skip](/searching/sortedArraySearch.go)
 - [Sorted List - Binary search](/searching/sortedArraySearch.go)
 - [Find longest common subsequence](/searching/commonSubsequence.go)
+## [Combinatorial](/combinatorial)
+ Combinatorial algorithms to find the possible combiations in a given set. These can be simple permutaion
+combintion or combinations with complex rules. Goal of these algorithms to reduce the search space to efficiantly
+find all combinations.
 
+- [Find Queen Positions](/combinatorial/NQueenProblem.go)
