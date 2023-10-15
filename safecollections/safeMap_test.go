@@ -1,7 +1,7 @@
 package safecollections
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"testing"
 )
 
@@ -21,5 +21,5 @@ func TestSafeMap(t *testing.T) {
 		}
 		i++
 	}
-
+	
 }

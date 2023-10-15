@@ -1,6 +1,6 @@
-package Algorithms
+package AlgorithmsGo
 
-import "Algorithms/random"
+import "AlgorithmsGo/random"
 
 func main() {
 	g := random.NewRandomGenerator()

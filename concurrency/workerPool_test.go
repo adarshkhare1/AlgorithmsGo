@@ -1,14 +1,13 @@
 package concurrency
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"runtime"
 	"testing"
 	"time"
 )
 
-
-func TestWorkerPool(t *testing.T){
+func TestWorkerPool(t *testing.T) {
 	runtime.GOMAXPROCS(4)
 	items := []*WorkItem{
 		NewWorkItem(testAdd),
@@ -20,7 +19,7 @@ func TestWorkerPool(t *testing.T){
 		NewWorkItem(testAdd),
 		NewWorkItem(testAdd),
 	}
-
+	
 	pool := NewWorkerPool(items, 4)
 	pool.Run()
 	/*var numErrors int
@@ -37,7 +36,7 @@ func TestWorkerPool(t *testing.T){
 	testHelper.VerifyStringsAreEqual(t, "test", "test")
 }
 
-func testAdd() error{
+func testAdd() error {
 	//x := 1 + 2
 	d, _ := time.ParseDuration("2s")
 	time.Sleep(d)

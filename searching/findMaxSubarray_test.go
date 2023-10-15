@@ -1,7 +1,7 @@
 package searching
 
 import (
-	"Algorithms/testHelper"
+	"AlgorithmsGo/testHelper"
 	"testing"
 )
 
@@ -30,8 +30,7 @@ func TestFindMaxSubArrayAllNegative(t *testing.T) {
 	funcName(t, test, FindMaxSubArray(test.Input))
 }
 
-
-func funcName(t *testing.T, test *MaxSubArrayTestInput, result SubArray,) {
+func funcName(t *testing.T, test *MaxSubArrayTestInput, result SubArray, ) {
 	testHelper.VerifyIntsAreEqual(t, test.outStart, result.Start)
 	testHelper.VerifyIntsAreEqual(t, test.outEnd, result.End)
 	testHelper.VerifyIntsAreEqual(t, test.outSum, result.Sum)
